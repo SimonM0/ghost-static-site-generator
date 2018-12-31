@@ -1,0 +1,37 @@
+{
+  "name": "ghost-static-site-generator",
+  "version": "0.0.0",
+  "description": "A simple static site generator for ghost",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./static -o"
+  },
+  "bin": {
+    "momo": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fried-Chicken/ghost-static-site-generator.git"
+  },
+  "keywords": [
+    "ghost",
+    "static",
+    "static",
+    "site",
+    "blog"
+  ],
+  "author": "Fried-Chicken <Fried-Chicken@users.noreply.github.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fried-Chicken/ghost-static-site-generator/issues"
+  },
+  "homepage": "https://github.com/Fried-Chicken/ghost-static-site-generator#readme",
+  "dependencies": {
+    "http-server": "^0.11.1",
+    "mkdirp": "^0.5.1",
+    "node-wget": "^0.4.3"
+  },
+  "resolutions": {
+    "boom": "^7.3.0"
+  }
+}
