@@ -28,13 +28,21 @@ $ gssg
 ```
 
 ### Generate static site from a custom domain
+If your site is not hosted locally you can use the `--domain` flag to target the your site.
 ```
 $ gssg --domain "http://localhost:2369"
 ```
 
 ### Generate static site to a custom folder
+To change the folder that the static site is generated into using the `--dest` flag.
 ```
 $ gssg --dest "myStaticSiteFolder"
+```
+
+### Preview site
+This will open the generated site in a new browser window.
+```
+$ gssg --preview
 ```
 
 ## Contributing

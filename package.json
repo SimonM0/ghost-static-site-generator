@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Fried-Chicken/ghost-static-site-generator#readme",
   "dependencies": {
+    "boom": "^7.3.0",
     "http-server": "^0.11.1",
     "mkdirp": "^0.5.1",
     "node-wget": "^0.4.3",
