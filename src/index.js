@@ -5,14 +5,23 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const { exec } = require('child_process');
 
-const STATIC_DIRECTORY = './static';
+const STATIC_DIRECTORY = 'static';
 const URL = 'http://localhost:2368';
 
-mkdirp(STATIC_DIRECTORY, function (err) {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`Directory Created`);
+/**
+ * Makes the static folder if it does not exist
+ */
+mkdirp(
+  STATIC_DIRECTORY,
+  error => {
+    const absoluteStaticPath = path.resolve(process.cwd(), STATIC_DIRECTORY);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    console.log(`Directory Created: ${STATIC_DIRECTORY}`);
 
     exec(
       'wget ' +
@@ -25,8 +34,11 @@ mkdirp(STATIC_DIRECTORY, function (err) {
       `--directory-prefix ${STATIC_DIRECTORY} ` +
       `${URL}`,
       () => {
-        removeQueryStrings(path.resolve(process.cwd(), STATIC_DIRECTORY))
-      }
+        /**
+         * Remove all query strings from file names
+         */
+        removeQueryStrings(absoluteStaticPath);
+      },
     );
-  }
-});
+  },
+);
