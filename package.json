@@ -7,7 +7,7 @@
     "start": "http-server ./static -o"
   },
   "bin": {
-    "momo": "./src/index.js"
+    "gssg": "./src/index.js"
   },
   "repository": {
     "type": "git",

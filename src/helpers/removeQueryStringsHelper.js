@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const removeQueryStrings = (
+const removeQueryStringsHelper = (
   directory,
   match = /\?.*/,
   replace = '',
@@ -13,7 +13,7 @@ const removeQueryStrings = (
     const stats = fs.lstatSync(filePath);
 
     if (stats.isDirectory()) {
-      removeQueryStrings(filePath);
+      removeQueryStringsHelper(filePath);
       return false;
     }
     return file.match(match);
@@ -25,4 +25,4 @@ const removeQueryStrings = (
   });
 };
 
-module.exports = removeQueryStrings;
+module.exports = removeQueryStringsHelper;

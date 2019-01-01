@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const removeQueryStrings = require('./removeQueryStrings');
+const removeQueryStringsHelper = require('./helpers/removeQueryStringsHelper');
 const wget = require('node-wget');
 const path = require('path');
 const mkdirp = require('mkdirp');
@@ -31,8 +31,6 @@ mkdirp(
       return;
     }
 
-    console.log(argv.hello);
-
     urls.forEach(
       url => exec(
         'wget ' +
@@ -48,11 +46,12 @@ mkdirp(
           /**
            * Remove all query strings from file names
            */
-          removeQueryStrings(absoluteStaticPath);
+          removeQueryStringsHelper(absoluteStaticPath);
         },
       ),
     );
 
-    console.log(`Static site directory: ${absoluteStaticPath}`);
+    console.log(`Domain: ${DOMAIN}`);
+    console.log(`Static site generated at: ${absoluteStaticPath}`);
   },
 );
