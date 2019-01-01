@@ -45,6 +45,12 @@ This will open the generated site in a new browser window.
 $ gssg --preview
 ```
 
+### Replakce url
+Use this flag to replace the url, use this option if your site url differs to your ghost url
+```
+$ gssg --url 'http://www.mydomain.com'
+```
+
 ## Contributing
 
 This is still a work in progress, please feel free to contribute by raising issues or creating pr's.

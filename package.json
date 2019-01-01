@@ -29,6 +29,7 @@
   "dependencies": {
     "boom": "^7.3.0",
     "http-server": "^0.11.1",
+    "jsdom": "^13.1.0",
     "mkdirp": "^0.5.1",
     "node-wget": "^0.4.3",
     "yargs": "^12.0.5"

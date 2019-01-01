@@ -4,11 +4,11 @@ const mkdirp = require('mkdirp');
 const { exec } = require('child_process');
 const { argv } = require('yargs');
 const OPTIONS = require('../constants/OPTIONS');
+const replaceUrlHelper = require('../helpers/replaceUrlHelper');
 const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
 const previewGeneratedSite = require('../commands/previewGeneratedSite');
 
 const generateStaticSite = () => {
-
   /**
    * Makes the static folder if it does not exist
    */
@@ -16,12 +16,13 @@ const generateStaticSite = () => {
     OPTIONS.STATIC_DIRECTORY,
     error => {
       const urls = [
-        OPTIONS.DOMAIN,
-        `${OPTIONS.DOMAIN}/sitemap.xml`,
-        `${OPTIONS.DOMAIN}/sitemap-authors.xml`,
-        `${OPTIONS.DOMAIN}/sitemap-pages.xml`,
-        `${OPTIONS.DOMAIN}/sitemap-posts.xml`,
-        `${OPTIONS.DOMAIN}/sitemap-tags.xml`,
+        OPTIONS.URL,
+        `${OPTIONS.URL}/sitemap.xsl`,
+        `${OPTIONS.URL}/sitemap.xml`,
+        `${OPTIONS.URL}/sitemap-authors.xml`,
+        `${OPTIONS.URL}/sitemap-pages.xml`,
+        `${OPTIONS.URL}/sitemap-posts.xml`,
+        `${OPTIONS.URL}/sitemap-tags.xml`,
       ];
       const absoluteStaticPath = path.resolve(
         process.cwd(),
@@ -49,13 +50,23 @@ const generateStaticSite = () => {
              * Remove all query strings from file names
              */
             removeQueryStringsHelper(absoluteStaticPath);
+
+            if (argv.url) {
+              /**
+               * Replace url in links
+               */
+              replaceUrlHelper(
+                absoluteStaticPath,
+                /\.(html|xml|xsl)/,
+                argv.url,
+              );
+            }
           },
         ),
       );
 
-      console.log(`Domain: ${OPTIONS.DOMAIN}`);
+      console.log(`Domain: ${OPTIONS.URL}`);
       console.log(`Static site generated at: ${absoluteStaticPath}`);
-
 
       if (argv.preview) {
         previewGeneratedSite();

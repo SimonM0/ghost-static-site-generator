@@ -16,6 +16,7 @@ const removeQueryStringsHelper = (
       removeQueryStringsHelper(filePath);
       return false;
     }
+
     return file.match(match);
   }).forEach((file) => {
     const filePath = path.join(directory, file);
