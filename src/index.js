@@ -14,6 +14,14 @@ const URL = 'http://localhost:2368';
 mkdirp(
   STATIC_DIRECTORY,
   error => {
+    const urls = [
+      URL,
+      `${URL}/sitemap.xml`,
+      `${URL}/sitemap-authors.xml`,
+      `${URL}/sitemap-pages.xml`,
+      `${URL}/sitemap-posts.xml`,
+      `${URL}/sitemap-tags.xml`,
+    ];
     const absoluteStaticPath = path.resolve(process.cwd(), STATIC_DIRECTORY);
 
     if (error) {
@@ -23,22 +31,24 @@ mkdirp(
 
     console.log(`Directory Created: ${STATIC_DIRECTORY}`);
 
-    exec(
-      'wget ' +
-      '--recursive ' +
-      '--page-requisites ' +
-      '--no-parent ' +
-      '--no-host-directories ' +
-      '--restrict-file-name=unix ' +
-      '--trust-server-names ' +
-      `--directory-prefix ${STATIC_DIRECTORY} ` +
-      `${URL}`,
-      () => {
-        /**
-         * Remove all query strings from file names
-         */
-        removeQueryStrings(absoluteStaticPath);
-      },
+    urls.forEach(
+      url => exec(
+        'wget ' +
+        '--recursive ' +
+        '--page-requisites ' +
+        '--no-parent ' +
+        '--no-host-directories ' +
+        '--restrict-file-name=unix ' +
+        '--trust-server-names ' +
+        `--directory-prefix ${STATIC_DIRECTORY} ` +
+        `${url}`,
+        () => {
+          /**
+           * Remove all query strings from file names
+           */
+          removeQueryStrings(absoluteStaticPath);
+        },
+      ),
     );
   },
 );
