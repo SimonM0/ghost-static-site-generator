@@ -3,10 +3,12 @@ const removeQueryStrings = require('./removeQueryStrings');
 const wget = require('node-wget');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const { argv } = require('yargs');
 const { exec } = require('child_process');
 
-const STATIC_DIRECTORY = 'static';
-const URL = 'http://localhost:2368';
+// Options
+const STATIC_DIRECTORY = argv.dest || 'static';
+const DOMAIN = argv.domain || 'http://localhost:2368';
 
 /**
  * Makes the static folder if it does not exist
@@ -15,12 +17,12 @@ mkdirp(
   STATIC_DIRECTORY,
   error => {
     const urls = [
-      URL,
-      `${URL}/sitemap.xml`,
-      `${URL}/sitemap-authors.xml`,
-      `${URL}/sitemap-pages.xml`,
-      `${URL}/sitemap-posts.xml`,
-      `${URL}/sitemap-tags.xml`,
+      DOMAIN,
+      `${DOMAIN}/sitemap.xml`,
+      `${DOMAIN}/sitemap-authors.xml`,
+      `${DOMAIN}/sitemap-pages.xml`,
+      `${DOMAIN}/sitemap-posts.xml`,
+      `${DOMAIN}/sitemap-tags.xml`,
     ];
     const absoluteStaticPath = path.resolve(process.cwd(), STATIC_DIRECTORY);
 
@@ -29,7 +31,7 @@ mkdirp(
       return;
     }
 
-    console.log(`Directory Created: ${STATIC_DIRECTORY}`);
+    console.log(argv.hello);
 
     urls.forEach(
       url => exec(
@@ -50,5 +52,7 @@ mkdirp(
         },
       ),
     );
+
+    console.log(`Static site directory: ${absoluteStaticPath}`);
   },
 );
