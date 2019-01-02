@@ -8,16 +8,29 @@ const replaceUrlHelper = require('../helpers/replaceUrlHelper');
 const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
 const previewGeneratedSite = require('../commands/previewGeneratedSite');
 
+const shouldShowProgress = () => {
+  if (argv.silent) {
+    return '';
+  }
+
+  const showProgressHelpText = execSync(
+    'wget --help | grep "show-progress" || true',
+  ).toString();
+
+  return `${showProgressHelpText}`.includes('show-progress') ?
+    '--show-progress ' :
+    '';
+};
+
 const generateStaticSite = () => {
+  const progressBar = shouldShowProgress();
+
   /**
    * Makes the static folder if it does not exist
    */
   mkdirp(
     OPTIONS.STATIC_DIRECTORY,
     error => {
-      const hideProgressBar = argv.silent ?
-        '' :
-        '--show-progress ';
       const urls = [
         OPTIONS.URL,
         `${OPTIONS.URL}/sitemap.xsl`,
@@ -43,7 +56,7 @@ const generateStaticSite = () => {
             execSync(
               'wget ' +
               '-q ' +
-              hideProgressBar +
+              progressBar +
               '--recursive ' +
               '--page-requisites ' +
               '--no-parent ' +
