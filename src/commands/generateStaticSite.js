@@ -46,24 +46,23 @@ const generateStaticSite = () => {
             '--trust-server-names ' +
             `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
             `${url}`,
-            () => {
-              /**
-               * Remove all query strings from file names
-               */
-              removeQueryStringsHelper(absoluteStaticPath);
-
-              if (argv.url) {
-                /**
-                 * Replace url in links
-                 */
-                replaceUrlHelper(
-                  absoluteStaticPath,
-                  /\.(html|xml|xsl)/,
-                  argv.url,
-                );
-              }
-            },
           );
+
+          /**
+           * Remove all query strings from file names
+           */
+          removeQueryStringsHelper(absoluteStaticPath);
+
+          if (argv.url) {
+            /**
+             * Replace url in links
+             */
+            replaceUrlHelper(
+              absoluteStaticPath,
+              /\.(html|xml|xsl)/,
+              argv.url,
+            );
+          }
         },
       );
 
