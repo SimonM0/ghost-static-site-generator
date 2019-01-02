@@ -53,6 +53,7 @@ const generateStaticSite = () => {
       urls.forEach(
         url => {
           try {
+            console.log(`Fetching: ${url}`);
             execSync(
               'wget ' +
               '-q ' +
