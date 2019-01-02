@@ -36,7 +36,7 @@ const generateStaticSite = () => {
 
       urls.forEach(
         url => {
-          const getUrl = execSync(
+          execSync(
             'wget ' +
             '--recursive ' +
             '--page-requisites ' +
@@ -64,18 +64,6 @@ const generateStaticSite = () => {
               }
             },
           );
-
-          getUrl.stdout.on('data', function(data) {
-            console.log('stdout: ' + data);
-          });
-
-          getUrl.stderr.on('data', function (data) {
-            console.log('stderr: ' + data.toString());
-          });
-
-          getUrl.on('exit', function (code) {
-            console.log('child process exited with code ' + code.toString());
-          });
         },
       );
 
