@@ -23,12 +23,12 @@ const replaceUrlHelper = (
     const filePath = path.join(directory, file);
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const output = fileContents.replace(
-      new RegExp(OPTIONS.DOMAIN, 'g'),
+      new RegExp(OPTIONS.URL, 'g'),
       replaceUrl,
     );
 
     fs.writeFileSync(filePath, output);
-    console.log(`${OPTIONS.DOMAIN} => ${replaceUrl}: ${filePath}`);
+    console.log(`${OPTIONS.URL} => ${replaceUrl}: ${filePath}`);
   });
 };
 
