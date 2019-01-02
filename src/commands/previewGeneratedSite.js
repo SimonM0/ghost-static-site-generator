@@ -1,19 +1,24 @@
 const { spawn } = require('child_process');
 const OPTIONS = require('../constants/OPTIONS');
 
+const convertDataForOutput = data =>
+  data
+  .toString()
+  .replace('\n', '');
+
 const previewGeneratedSite = () => {
   const preview = spawn('http-server', [OPTIONS.STATIC_DIRECTORY, '-o']);
 
-  preview.stdout.on('data', function (data) {
-    console.log('stdout: ' + data.toString());
+  preview.stdout.on('data', (data) => {
+    console.log(convertDataForOutput(data));
   });
 
-  preview.stderr.on('data', function (data) {
-    console.log('stderr: ' + data.toString());
+  preview.stderr.on('data', (data) => {
+    console.log(convertDataForOutput(data));
   });
 
-  preview.on('exit', function (code) {
-    console.log('child process exited with code ' + code.toString());
+  preview.on('exit', (data) => {
+    console.log('child process exited with code ' + convertDataForOutput(data));
   });
 };
 
