@@ -6,7 +6,7 @@ There are many reasons for wanting to generate a static site. For example securi
 ## Prerequisites
 You need to have the following installed.
 - Node v8.9.0
-- wget
+- wget v1.16 (Versions prior to will need to use the --silent flag as --show-progress is not available)
 
 ## Installation
 1. Install wget
