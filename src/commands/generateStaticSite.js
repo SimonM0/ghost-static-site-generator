@@ -68,7 +68,7 @@ const generateStaticSite = () => {
               { stdio: 'inherit' },
             );
           } catch (error) {
-            console.log(error.stdout);
+            console.log(`ERROR: ${error.stdout}`);
           }
           /**
            * Remove all query strings from file names
