@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { argv } = require('yargs');
 const OPTIONS = require('../constants/OPTIONS');
 
 const replaceUrlHelper = (
@@ -15,20 +14,21 @@ const replaceUrlHelper = (
     const stats = fs.lstatSync(filePath);
 
     if (stats.isDirectory()) {
-      replaceUrlHelper(filePath);
+      replaceUrlHelper(filePath, match, replaceUrl);
       return false;
     }
+
     return file.match(match);
   }).forEach((file) => {
     const filePath = path.join(directory, file);
-    const fileContents = fs.readFileSync(filePath, 'utf8')
+    const fileContents = fs.readFileSync(filePath, 'utf8');
     const output = fileContents.replace(
-      new RegExp( OPTIONS.DOMAIN, 'g'),
-      replaceUrl
+      new RegExp(OPTIONS.DOMAIN, 'g'),
+      replaceUrl,
     );
 
     fs.writeFileSync(filePath, output);
-    console.log(`${OPTIONS.DOMAIN} => ${argv.url}: ${filePath}`);
+    console.log(`${OPTIONS.DOMAIN} => ${replaceUrl}: ${filePath}`);
   });
 };
 

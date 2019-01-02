@@ -13,7 +13,7 @@ const removeQueryStringsHelper = (
     const stats = fs.lstatSync(filePath);
 
     if (stats.isDirectory()) {
-      removeQueryStringsHelper(filePath);
+      removeQueryStringsHelper(filePath, match, replace);
       return false;
     }
 
