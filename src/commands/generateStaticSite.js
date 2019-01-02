@@ -1,7 +1,7 @@
 const wget = require('node-wget');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
 const { argv } = require('yargs');
 const OPTIONS = require('../constants/OPTIONS');
 const replaceUrlHelper = require('../helpers/replaceUrlHelper');
@@ -36,7 +36,7 @@ const generateStaticSite = () => {
 
       urls.forEach(
         url => {
-          const getUrl = exec(
+          const getUrl = execSync(
             'wget ' +
             '--recursive ' +
             '--page-requisites ' +
