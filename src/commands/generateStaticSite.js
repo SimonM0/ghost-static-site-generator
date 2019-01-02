@@ -36,18 +36,23 @@ const generateStaticSite = () => {
 
       urls.forEach(
         url => {
-          execSync(
-            'wget ' +
-            '--recursive ' +
-            '--page-requisites ' +
-            '--no-parent ' +
-            '--no-host-directories ' +
-            '--restrict-file-name=unix ' +
-            '--trust-server-names ' +
-            `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
-            `${url}`,
-          );
-
+          try {
+            execSync(
+              'wget ' +
+              '-q --show-progress ' +
+              '--recursive ' +
+              '--page-requisites ' +
+              '--no-parent ' +
+              '--no-host-directories ' +
+              '--restrict-file-name=unix ' +
+              '--trust-server-names ' +
+              `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
+              `${url}`,
+              { stdio: 'inherit' },
+            );
+          } catch (error) {
+            console.log(error.stdout);
+          }
           /**
            * Remove all query strings from file names
            */
