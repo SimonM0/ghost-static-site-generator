@@ -35,34 +35,48 @@ const generateStaticSite = () => {
       }
 
       urls.forEach(
-        url => exec(
-          'wget ' +
-          '--recursive ' +
-          '--page-requisites ' +
-          '--no-parent ' +
-          '--no-host-directories ' +
-          '--restrict-file-name=unix ' +
-          '--trust-server-names ' +
-          `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
-          `${url}`,
-          () => {
-            /**
-             * Remove all query strings from file names
-             */
-            removeQueryStringsHelper(absoluteStaticPath);
-
-            if (argv.url) {
+        url => {
+          const getUrl = exec(
+            'wget ' +
+            '--recursive ' +
+            '--page-requisites ' +
+            '--no-parent ' +
+            '--no-host-directories ' +
+            '--restrict-file-name=unix ' +
+            '--trust-server-names ' +
+            `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
+            `${url}`,
+            () => {
               /**
-               * Replace url in links
+               * Remove all query strings from file names
                */
-              replaceUrlHelper(
-                absoluteStaticPath,
-                /\.(html|xml|xsl)/,
-                argv.url,
-              );
-            }
-          },
-        ),
+              removeQueryStringsHelper(absoluteStaticPath);
+
+              if (argv.url) {
+                /**
+                 * Replace url in links
+                 */
+                replaceUrlHelper(
+                  absoluteStaticPath,
+                  /\.(html|xml|xsl)/,
+                  argv.url,
+                );
+              }
+            },
+          );
+
+          getUrl.stdout.on('data', function(data) {
+            console.log('stdout: ' + data);
+          });
+
+          getUrl.stderr.on('data', function (data) {
+            console.log('stderr: ' + data.toString());
+          });
+
+          getUrl.on('exit', function (code) {
+            console.log('child process exited with code ' + code.toString());
+          });
+        },
       );
 
       console.log(`Domain: ${OPTIONS.URL}`);
