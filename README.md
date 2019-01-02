@@ -60,6 +60,12 @@ Use this flag to replace the url, use this option if your site url differs to yo
 $ gssg --url 'http://www.mydomain.com'
 ```
 
+### Silent mode
+Use this flag to hide wget output
+```
+$ gssg --silent
+```
+
 ## Contributing
 
 This is still a work in progress, please feel free to contribute by raising issues or creating pr's.

@@ -15,6 +15,9 @@ const generateStaticSite = () => {
   mkdirp(
     OPTIONS.STATIC_DIRECTORY,
     error => {
+      const hideProgressBar = argv.silent ?
+        '' :
+        '--show-progress ';
       const urls = [
         OPTIONS.URL,
         `${OPTIONS.URL}/sitemap.xsl`,
@@ -39,7 +42,8 @@ const generateStaticSite = () => {
           try {
             execSync(
               'wget ' +
-              '-q --show-progress ' +
+              '-q ' +
+              hideProgressBar +
               '--recursive ' +
               '--page-requisites ' +
               '--no-parent ' +
