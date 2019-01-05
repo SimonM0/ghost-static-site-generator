@@ -7,6 +7,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'implicit-arrow-linebreak': 'off',
     'no-console': 'off',
+    'no-useless-escape': 'off',
     'max-len': [
       'error',
       {
