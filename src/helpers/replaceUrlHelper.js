@@ -2,6 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const OPTIONS = require('../constants/OPTIONS');
 
+/**
+ * This helper finds all instances of OPTIONS.URL and replaces it with the
+ * url provided by the `url` flag. It will replace `http://`, `https://` and
+ * `//`
+ *
+ * @param {string} directory - This is the directory to scan
+ * @param {string} match - These are the file extensions to match
+ * @param {string} replaceUrl - This is the url to replace with
+ */
 const replaceUrlHelper = (
   directory,
   match = /\.html/,
@@ -22,10 +31,19 @@ const replaceUrlHelper = (
   }).forEach((file) => {
     const filePath = path.join(directory, file);
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    const output = fileContents.replace(
+    let output = fileContents.replace(
       new RegExp(OPTIONS.URL, 'g'),
       replaceUrl,
     );
+
+    // Replace any localhost domains without protocol with the the domain
+    // i.e '//localhost:2365'
+    if (replaceUrl !== '') {
+      output = output.replace(
+        new RegExp(OPTIONS.DOMAIN, 'g'),
+        replaceUrl.replace(/^https?\:\/\//i, '')
+      )
+    }
 
     fs.writeFileSync(filePath, output);
     console.log(`${OPTIONS.URL} => ${replaceUrl}: ${filePath}`);

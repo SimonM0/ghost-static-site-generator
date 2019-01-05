@@ -71,6 +71,7 @@ const generateStaticSite = () => {
           } catch (error) {
             console.log(`ERROR: ${error.stdout}`);
           }
+
           /**
            * Remove all query strings from file names
            */
@@ -82,7 +83,7 @@ const generateStaticSite = () => {
              */
             replaceUrlHelper(
               absoluteStaticPath,
-              /\.(html|xml|xsl)/,
+              /\.(html|xml|xsl|txt|js)/,
               argv.url,
             );
           }
