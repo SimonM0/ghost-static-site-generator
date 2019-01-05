@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export const removeQueryStringsHelper = (
+const removeQueryStringsHelper = (
   directory,
   match = /\?.*/,
-  replace = '',af
+  replace = '',
 ) => {
   const files = fs.readdirSync(directory);
 
@@ -25,3 +25,5 @@ export const removeQueryStringsHelper = (
     fs.renameSync(filePath, newFilePath);
   });
 };
+
+module.exports = removeQueryStringsHelper;

@@ -1,5 +1,5 @@
-import { argv } from 'yargs';
-import { execSync } from 'child_process';
+const { argv } = require('yargs');
+const { execSync } = require('child_process');
 
 const URL = argv.domain || 'http://localhost:2368';
 
@@ -15,7 +15,7 @@ const shouldShowProgress = () => {
   return `${showProgressHelpText}`.includes('show-progress');
 };
 
-export const OPTIONS = {
+const OPTIONS = {
   STATIC_DIRECTORY: argv.dest || 'static',
   DOMAIN: URL.replace(/^https?:\/\//i, ''),
   URL,
@@ -23,3 +23,5 @@ export const OPTIONS = {
     ? '--show-progress '
     : '',
 };
+
+module.exports = OPTIONS;

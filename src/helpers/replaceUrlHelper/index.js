@@ -1,1 +1,1 @@
-export { replaceUrlHelper } from './replaceUrlHelper';
+module.exports = require('./replaceUrlHelper');

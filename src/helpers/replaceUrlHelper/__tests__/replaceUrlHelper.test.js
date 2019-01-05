@@ -1,4 +1,4 @@
-import { replaceUrlHelper } from '../replaceUrlHelper';
+const replaceUrlHelper = require('../replaceUrlHelper');
 
 describe.skip('replaceUrlHelper', () => {
   it('should ', () => {

@@ -1,1 +1,1 @@
-export { fetchUrlHelper } from './fetchUrlHelper';
+module.exports = require('./fetchUrlHelper');

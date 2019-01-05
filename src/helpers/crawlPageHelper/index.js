@@ -1,1 +1,1 @@
-export { crawlPageHelper } from './crawlPageHelper';
+module.exports = require('./crawlPageHelper');

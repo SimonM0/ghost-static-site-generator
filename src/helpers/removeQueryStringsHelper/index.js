@@ -1,1 +1,1 @@
-export { removeQueryStringsHelper } from './removeQueryStringsHelper';
+module.exports = require('./removeQueryStringsHelper');

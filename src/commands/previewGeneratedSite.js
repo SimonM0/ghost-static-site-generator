@@ -1,12 +1,12 @@
-import { spawn } from 'child_process';
-import { OPTIONS } from '../constants/OPTIONS';
+const { spawn } = require('child_process');
+const OPTIONS = require('../constants/OPTIONS');
 
 const convertDataForOutput = data =>
   data
     .toString()
     .replace('\n', '');
 
-export const previewGeneratedSite = () => {
+const previewGeneratedSite = () => {
   const preview = spawn('http-server', [OPTIONS.STATIC_DIRECTORY, '-o']);
 
   preview.stdout.on('data', (data) => {
@@ -21,3 +21,5 @@ export const previewGeneratedSite = () => {
     console.log(`child process exited with code ${convertDataForOutput(data)}`);
   });
 };
+
+module.exports = previewGeneratedSite;

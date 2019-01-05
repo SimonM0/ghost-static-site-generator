@@ -1,10 +1,7 @@
-import { execSync } from 'child_process';
-import { OPTIONS } from '../../constants/OPTIONS';
+const { execSync } = require('child_process');
+const OPTIONS = require('../../constants/OPTIONS');
 
-/**
- * A small description explaining where this function is used and why
- */
-export const crawlPageHelper = (url) => {
+const crawlPageHelper = (url) => {
   try {
     console.log(`Fetching: ${url}`);
     execSync(
@@ -22,3 +19,5 @@ export const crawlPageHelper = (url) => {
     console.log(`ERROR: ${execSyncError.stdout}`);
   }
 };
+
+module.exports = crawlPageHelper;

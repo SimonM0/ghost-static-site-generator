@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import fs from 'fs';
-import { replaceDomainNameHelper } from '../replaceDomainNameHelper';
+const fs = require('fs');
+const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 
 jest.mock('path', () => ({
   join: (...args) => args.join(''),

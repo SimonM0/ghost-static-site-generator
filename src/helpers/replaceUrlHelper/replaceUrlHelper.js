@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import { OPTIONS } from '../../constants/OPTIONS';
-import { replaceDomainNameHelper } from '../replaceDomainNameHelper';
+const fs = require('fs');
+const path = require('path');
+const OPTIONS = require('../../constants/OPTIONS');
+const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 
 /**
  * This helper finds all instances of OPTIONS.URL and replaces it with the
@@ -12,7 +12,7 @@ import { replaceDomainNameHelper } from '../replaceDomainNameHelper';
  * @param {string} match - These are the file extensions to match
  * @param {string} replaceUrl - This is the url to replace with
  */
-export const replaceUrlHelper = (
+const replaceUrlHelper = (
   directory = '',
   match = /\.html/,
   replaceUrl = '',
@@ -36,3 +36,5 @@ export const replaceUrlHelper = (
     ),
   );
 };
+
+module.exports = replaceUrlHelper;

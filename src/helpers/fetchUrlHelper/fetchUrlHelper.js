@@ -1,9 +1,9 @@
-import { parseString } from 'xml2js';
-import fs from 'fs';
-import path from 'path';
-import get from 'lodash/get';
-import { crawlPageHelper } from '../crawlPageHelper';
-import { OPTIONS } from '../../constants/OPTIONS';
+const { parseString } = require('xml2js');
+const fs = require('fs');
+const path = require('path');
+const get = require('lodash/get');
+const crawlPageHelper = require('../crawlPageHelper');
+const OPTIONS = require('../../constants/OPTIONS');
 
 const getUrlLinks = (result, path) => {
   const sitemaps = get(result, path, []);
@@ -21,10 +21,7 @@ const getUrlLinks = (result, path) => {
   }, []);
 };
 
-/**
- * A small description explaining where this function is used and why
- */
-export const fetchUrlHelper = (url) => {
+const fetchUrlHelper = (url) => {
   crawlPageHelper(url);
 
   if (`${url}`.includes('.xml')) {
@@ -44,3 +41,5 @@ export const fetchUrlHelper = (url) => {
     });
   }
 };
+
+module.exports = fetchUrlHelper;

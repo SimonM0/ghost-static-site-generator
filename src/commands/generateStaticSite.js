@@ -1,13 +1,13 @@
-import path from 'path';
-import mkdirp from 'mkdirp';
-import { argv } from 'yargs';
-import { OPTIONS } from '../constants/OPTIONS';
-import { previewGeneratedSite } from './previewGeneratedSite';
-import { fetchUrlHelper } from '../helpers/fetchUrlHelper';
-import { removeQueryStringsHelper } from '../helpers/removeQueryStringsHelper';
-import { replaceUrlHelper } from '../helpers/replaceUrlHelper';
+const path = require('path');
+const mkdirp = require('mkdirp');
+const { argv } = require('yargs');
+const previewGeneratedSite = require('./previewGeneratedSite');
+const fetchUrlHelper = require('../helpers/fetchUrlHelper');
+const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
+const replaceUrlHelper = require('../helpers/replaceUrlHelper');
+const OPTIONS = require('../constants/OPTIONS');
 
-export const generateStaticSite = () => {
+const generateStaticSite = () => {
   const absoluteStaticPath = path.resolve(
     process.cwd(),
     OPTIONS.STATIC_DIRECTORY,
@@ -32,7 +32,7 @@ export const generateStaticSite = () => {
       urls.forEach(fetchUrlHelper);
 
       /**
-       * Remove all query strings from file names
+       * Remove all query strings = file names
        */
       removeQueryStringsHelper(absoluteStaticPath);
 
@@ -56,3 +56,5 @@ export const generateStaticSite = () => {
     },
   );
 };
+
+module.exports = generateStaticSite;

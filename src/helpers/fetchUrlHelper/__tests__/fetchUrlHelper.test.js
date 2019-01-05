@@ -1,4 +1,4 @@
-import { fetchUrlHelper } from '../fetchUrlHelper';
+const fetchUrlHelper = require('../fetchUrlHelper');
 
 describe.skip('fetchUrlHelper', () => {
   it.skip('should ', () => {

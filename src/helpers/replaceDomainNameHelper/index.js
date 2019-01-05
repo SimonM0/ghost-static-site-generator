@@ -1,1 +1,1 @@
-export { replaceDomainNameHelper } from './replaceDomainNameHelper';
+module.exports = require('./replaceDomainNameHelper');

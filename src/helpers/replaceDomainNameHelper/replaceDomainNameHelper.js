@@ -1,6 +1,6 @@
-import path from 'path';
-import fs from 'fs';
-import { OPTIONS } from '../../constants/OPTIONS';
+const path = require('path');
+const fs = require('fs');
+const OPTIONS = require('../../constants/OPTIONS');
 
 /**
  * This function replaces url and domain names
@@ -9,7 +9,7 @@ import { OPTIONS } from '../../constants/OPTIONS';
  * @param {string} replaceUrl - url to replace with
  * @returns {function(*=)} - returns a function that accepts a file name
  */
-export const replaceDomainNameHelper = (
+const replaceDomainNameHelper = (
   directory,
   replaceUrl,
 ) => (file) => {
@@ -32,3 +32,5 @@ export const replaceDomainNameHelper = (
   fs.writeFileSync(filePath, output);
   console.log(`${OPTIONS.URL} => ${replaceUrl}: ${filePath}`);
 };
+
+module.exports = replaceDomainNameHelper;
