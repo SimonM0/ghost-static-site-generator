@@ -1,12 +1,11 @@
-const wget = require('node-wget');
-const path = require('path');
-const mkdirp = require('mkdirp');
-const { execSync } = require('child_process');
-const { argv } = require('yargs');
-const OPTIONS = require('../constants/OPTIONS');
-const replaceUrlHelper = require('../helpers/replaceUrlHelper');
-const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
-const previewGeneratedSite = require('../commands/previewGeneratedSite');
+import path from 'path';
+import mkdirp from 'mkdirp';
+import argv from 'yargs';
+import { execSync } from 'child_process';
+import { replaceUrlHelper } from '../helpers/replaceUrlHelper';
+import { OPTIONS } from '../constants/OPTIONS';
+import { removeQueryStringsHelper } from '../helpers/removeQueryStringsHelper';
+import { previewGeneratedSite } from './previewGeneratedSite';
 
 const shouldShowProgress = () => {
   if (argv.silent) {
@@ -17,12 +16,12 @@ const shouldShowProgress = () => {
     'wget --help | grep "show-progress" || true',
   ).toString();
 
-  return `${showProgressHelpText}`.includes('show-progress') ?
-    '--show-progress ' :
-    '';
+  return `${showProgressHelpText}`.includes('show-progress')
+    ? '--show-progress '
+    : '';
 };
 
-const generateStaticSite = () => {
+export const generateStaticSite = () => {
   const progressBar = shouldShowProgress();
 
   /**
@@ -30,7 +29,7 @@ const generateStaticSite = () => {
    */
   mkdirp(
     OPTIONS.STATIC_DIRECTORY,
-    error => {
+    (error) => {
       const urls = [
         OPTIONS.URL,
         `${OPTIONS.URL}/sitemap.xsl`,
@@ -51,25 +50,25 @@ const generateStaticSite = () => {
       }
 
       urls.forEach(
-        url => {
+        (url) => {
           try {
             console.log(`Fetching: ${url}`);
             execSync(
-              'wget ' +
-              '-q ' +
-              progressBar +
-              '--recursive ' +
-              '--page-requisites ' +
-              '--no-parent ' +
-              '--no-host-directories ' +
-              '--restrict-file-name=unix ' +
-              '--trust-server-names ' +
-              `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ` +
-              `${url}`,
+              `${'wget '
+              + '-q '}${
+                progressBar
+              }--recursive `
+              + '--page-requisites '
+              + '--no-parent '
+              + '--no-host-directories '
+              + '--restrict-file-name=unix '
+              + '--trust-server-names '
+              + `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} `
+              + `${url}`,
               { stdio: 'inherit' },
             );
-          } catch (error) {
-            console.log(`ERROR: ${error.stdout}`);
+          } catch (execSyncError) {
+            console.log(`ERROR: ${execSyncError.stdout}`);
           }
 
           /**
@@ -99,5 +98,3 @@ const generateStaticSite = () => {
     },
   );
 };
-
-module.exports = generateStaticSite;

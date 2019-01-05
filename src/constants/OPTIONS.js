@@ -1,11 +1,9 @@
-const { argv } = require('yargs');
+import argv from 'yargs';
 
 const URL = argv.domain || 'http://localhost:2368';
 
-const OPTIONS = {
+export const OPTIONS = {
   STATIC_DIRECTORY: argv.dest || 'static',
-  DOMAIN: URL.replace(/^https?\:\/\//i, ''),
+  DOMAIN: URL.replace(/^https?:\/\//i, ''),
   URL,
 };
-
-module.exports = OPTIONS;

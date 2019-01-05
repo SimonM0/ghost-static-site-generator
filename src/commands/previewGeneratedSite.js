@@ -1,12 +1,12 @@
-const { spawn } = require('child_process');
-const OPTIONS = require('../constants/OPTIONS');
+import { spawn } from 'child_process';
+import OPTIONS from '../constants/OPTIONS';
 
 const convertDataForOutput = data =>
   data
-  .toString()
-  .replace('\n', '');
+    .toString()
+    .replace('\n', '');
 
-const previewGeneratedSite = () => {
+export const previewGeneratedSite = () => {
   const preview = spawn('http-server', [OPTIONS.STATIC_DIRECTORY, '-o']);
 
   preview.stdout.on('data', (data) => {
@@ -18,8 +18,6 @@ const previewGeneratedSite = () => {
   });
 
   preview.on('exit', (data) => {
-    console.log('child process exited with code ' + convertDataForOutput(data));
+    console.log(`child process exited with code ${convertDataForOutput(data)}`);
   });
 };
-
-module.exports = previewGeneratedSite;
