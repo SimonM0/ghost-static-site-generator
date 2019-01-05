@@ -4,7 +4,7 @@ import { argv } from 'yargs';
 import { execSync } from 'child_process';
 import { replaceUrlHelper } from '../helpers/replaceUrlHelper';
 import { OPTIONS } from '../constants/OPTIONS';
-import { removeQueryStringsHelper } from '../helpers/removeQueryStringsHelper';
+import { removeQueryStringsHelper } from '../helpers/removeQueryStringsHelper/removeQueryStringsHelper';
 import { previewGeneratedSite } from './previewGeneratedSite';
 
 const shouldShowProgress = () => {

@@ -9,15 +9,23 @@ jest.mock('path', () => ({
 jest.mock('fs');
 
 jest.mock('yargs', () => ({
-  url: 'https://localhost:2742',
-  domain: 'https://localhost:2742',
+  argv: {
+    url: 'https://localhost:2742',
+    domain: 'https://localhost:2742',
+  },
 }));
 
 describe('replaceDomainNameHelper', () => {
   const MOCK_FILE_INFO = {
-    '/static/protocolRelativeUrls.html': '//localhost:2742',
-    '/static/http.html': 'http://localhost:2742',
-    '/static/https.html': 'https://localhost:2742',
+    '/static/protocolRelativeUrls.html': {
+      contents: '//localhost:2742',
+    },
+    '/static/http.html': {
+      contents: 'http://localhost:2742',
+    },
+    '/static/https.html': {
+      contents: 'https://localhost:2742',
+    },
   };
 
   beforeEach(() => {

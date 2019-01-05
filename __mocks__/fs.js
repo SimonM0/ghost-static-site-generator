@@ -11,7 +11,14 @@ fs.setMockFiles = (newMockFiles) => {
 
 // A custom version of `readFileSync` that reads from the special mocked out
 // file list set via __setMockFiles
-fs.readFileSync = directoryPath => mockFiles[directoryPath] || [];
+fs.readFileSync = directoryPath => mockFiles[directoryPath].contents;
+
 fs.writeFileSync = jest.fn();
+
+fs.readdirSync = () => Object.keys(mockFiles);
+
+fs.lstatSync = filePath => ({
+  isDirectory: () => (mockFiles[filePath] || {}).isDirectory,
+});
 
 module.exports = fs;

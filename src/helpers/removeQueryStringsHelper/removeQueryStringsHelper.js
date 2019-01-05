@@ -4,7 +4,7 @@ import path from 'path';
 export const removeQueryStringsHelper = (
   directory,
   match = /\?.*/,
-  replace = '',
+  replace = '',af
 ) => {
   const files = fs.readdirSync(directory);
 
