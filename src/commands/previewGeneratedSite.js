@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import OPTIONS from '../constants/OPTIONS';
+import { OPTIONS } from '../constants/OPTIONS';
 
 const convertDataForOutput = data =>
   data

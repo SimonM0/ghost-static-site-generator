@@ -1,6 +1,6 @@
 import path from 'path';
 import mkdirp from 'mkdirp';
-import argv from 'yargs';
+import { argv } from 'yargs';
 import { execSync } from 'child_process';
 import { replaceUrlHelper } from '../helpers/replaceUrlHelper';
 import { OPTIONS } from '../constants/OPTIONS';

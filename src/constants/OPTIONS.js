@@ -1,4 +1,4 @@
-import argv from 'yargs';
+import { argv } from 'yargs';
 
 const URL = argv.domain || 'http://localhost:2368';
 
