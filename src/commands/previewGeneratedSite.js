@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { spawn } = require('child_process');
 const OPTIONS = require('../constants/OPTIONS');
 
@@ -7,7 +8,7 @@ const convertDataForOutput = data =>
     .replace('\n', '');
 
 const previewGeneratedSite = () => {
-  const preview = spawn('http-server', [OPTIONS.STATIC_DIRECTORY, '-o']);
+  const preview = spawn('npm', ['start']);
 
   preview.stdout.on('data', (data) => {
     console.log(convertDataForOutput(data));
