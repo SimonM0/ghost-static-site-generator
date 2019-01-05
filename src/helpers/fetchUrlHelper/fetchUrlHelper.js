@@ -30,10 +30,11 @@ const fetchUrlHelper = (url) => {
       `${OPTIONS.STATIC_DIRECTORY}${url.replace(OPTIONS.URL, '')}`,
     );
     const fileContents = fs.readFileSync(filePath, 'utf8');
+
     parseString(fileContents, (err, result) => {
       const sitemaps = getUrlLinks(result, 'sitemapindex.sitemap');
       const urlsets = getUrlLinks(result, 'urlset.url');
-      console.log('uncrawledUrls', sitemaps, urlsets);
+
       [
         ...sitemaps,
         ...urlsets,

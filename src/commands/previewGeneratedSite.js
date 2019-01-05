@@ -1,6 +1,4 @@
-#!/usr/bin/env node
 const { spawn } = require('child_process');
-const OPTIONS = require('../constants/OPTIONS');
 
 const convertDataForOutput = data =>
   data

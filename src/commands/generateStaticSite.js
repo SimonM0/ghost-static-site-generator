@@ -4,6 +4,7 @@ const { argv } = require('yargs');
 const previewGeneratedSite = require('./previewGeneratedSite');
 const fetchUrlHelper = require('../helpers/fetchUrlHelper');
 const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
+const responsiveImagesHelper = require('../helpers/responsiveImagesHelper/responsiveImagesHelper');
 const replaceUrlHelper = require('../helpers/replaceUrlHelper');
 const OPTIONS = require('../constants/OPTIONS');
 
@@ -30,6 +31,11 @@ const generateStaticSite = () => {
       }
 
       urls.forEach(fetchUrlHelper);
+
+      /**
+       * Generate all missing responsive images
+       */
+      responsiveImagesHelper();
 
       /**
        * Remove all query strings = file names

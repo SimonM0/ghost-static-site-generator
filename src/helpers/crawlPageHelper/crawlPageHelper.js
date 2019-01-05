@@ -5,7 +5,7 @@ const crawlPageHelper = (url) => {
   try {
     console.log(`Fetching: ${url}`);
     execSync(
-      `${'wget -q '}${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
+      `wget -q ${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
       + '--page-requisites '
       + '--no-parent '
       + '--no-host-directories '
