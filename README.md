@@ -25,18 +25,7 @@ $ npm install -g ghost-static-site-generator
 ```
 
 ## Usages
-
 By default the tool will default to `http://localhost:2368` for the domain and generate a folder called `static` in the directory that you run the tool in.
-
-## AMP Article images
-For AMP article images you will need to add a dimension to it. Open `amp.hbs`, this is located at `versions/2.9.1/core/server/apps/amp/lib/views/amp.hbs` and edit the api-img line
-```
-<amp-img src="{{img_url feature_image absolute="true"}}" width="600" height="400" layout="responsive"></amp-img>
-```
-and add `size="m"` to the `img_url` helper
-```
-<amp-img src="{{img_url feature_image size="m" absolute="true"}}" width="600" height="400" layout="responsive"></amp-img>
-```
 
 # Recipes
 Assuming you are hosting locally on `http://localhost:2368` and your domain is `http://www.myblog.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
