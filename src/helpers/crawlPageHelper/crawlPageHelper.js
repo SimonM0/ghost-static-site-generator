@@ -2,6 +2,17 @@ const { execSync } = require('child_process');
 const { argv } = require('yargs');
 const OPTIONS = require('../../constants/OPTIONS');
 
+const contentOnError = () => {
+  const contentOnErrorHelpText = execSync(
+    'wget --help | grep "content-on-error" || true',
+  ).toString();
+
+  return `${contentOnErrorHelpText}`
+    .includes('content-on-error')
+    ? '--content-on-error '
+    : '';
+};
+
 const crawlPageHelper = (url) => {
   const wgetCommand = `wget -q ${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
     + '--page-requisites '
@@ -9,7 +20,7 @@ const crawlPageHelper = (url) => {
     + '--no-host-directories '
     + '--restrict-file-name=unix '
     + '--trust-server-names '
-    + `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} `
+    + `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ${contentOnError()}`
     + `${url}`;
 
   try {

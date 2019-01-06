@@ -23,6 +23,7 @@ const generateStaticSite = () => {
       const urls = [
         `${OPTIONS.URL}/sitemap.xsl`,
         `${OPTIONS.URL}/sitemap.xml`,
+        `${OPTIONS.URL}/404`,
       ];
 
       if (error) {
