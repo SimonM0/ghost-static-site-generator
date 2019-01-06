@@ -1,4 +1,6 @@
+const path = require('path');
 const { spawn } = require('child_process');
+const OPTIONS = require('../constants/OPTIONS');
 
 const convertDataForOutput = data =>
   data
@@ -6,7 +8,10 @@ const convertDataForOutput = data =>
     .replace('\n', '');
 
 const previewGeneratedSite = () => {
-  const preview = spawn('npm', ['start']);
+  const preview = spawn(
+    path.resolve(`${__dirname}', '../../../node_modules/.bin/http-server`),
+    [OPTIONS.STATIC_DIRECTORY, '-o'],
+  );
 
   preview.stdout.on('data', (data) => {
     console.log(convertDataForOutput(data));
