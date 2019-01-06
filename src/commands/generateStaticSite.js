@@ -56,6 +56,7 @@ const generateStaticSite = () => {
 
       console.log(`Domain: ${OPTIONS.URL}`);
       console.log(`Static site generated at: ${absoluteStaticPath}`);
+      console.timeEnd('Site generated in');
 
       if (argv.preview) {
         previewGeneratedSite();
