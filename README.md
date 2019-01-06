@@ -27,7 +27,7 @@ $ npm install -g ghost-static-site-generator
 ## Usages
 By default the tool will default to `http://localhost:2368` for the domain and generate a folder called `static` in the directory that you run the tool in.
 
-# Recipes
+## Recipes
 Assuming you are hosting locally on `http://localhost:2368` and your domain is `http://www.myblog.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
 ```
 $ gssg --url http://www.myblog.com
@@ -43,7 +43,7 @@ Assuming you are hosting remotely on `http://www.myhiddenserver.com:4538` and yo
 $ gssg --domain http://www.myhiddenserver.com:4538 --dest myblog-static-folder
 ```
 
-# API 
+## API 
 ### Generating a static site
 This assumes that your site is running locally at `http://localhost:2368` and will output to a folder called static.
 ```
