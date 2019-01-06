@@ -3,7 +3,7 @@
 ![Stars](https://img.shields.io/github/stars/Fried-Chicken/ghost-static-site-generator.svg)
 ![Forks](https://img.shields.io/github/forks/Fried-Chicken/ghost-static-site-generator.svg)
 # ghost-static-site-generator
-A tool for generating static sites from [ghost](https://ghost.org/) blogs. This is based loosely on [buster](https://github.com/axitkhurana/buster) but since that project has been abandonded I've decided to create a new tool. 
+A tool for generating static sites from [ghost](https://ghost.org/) blogs. This is based loosely on [buster](https://github.com/axitkhurana/buster) but since that project has been abandoned I've decided to create a new tool. 
 
 There are many reasons for wanting to generate a static site. For example security. It's also possible to integrate this tool into a ci process and deploy the generated site.
 
@@ -35,7 +35,26 @@ and add `size="m"` to the `img_url` helper
 ```
 <amp-img src="{{img_url feature_image size="m" absolute="true"}}" width="600" height="400" layout="responsive"></amp-img>
 ```
-### Generate static site
+
+# Recipes
+Assuming you are hosting locally on `http://localhost:2368` and your domain is `http://www.myblog.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
+```
+$ gssg --url http://www.myblog.com
+```
+
+Assuming you are hosting remotely on `http://www.myhiddenserver.com:4538` and your domain is `http://www.myblogbucket.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
+```
+$ gssg --domain http://www.myhiddenserver.com:4538 --url http://www.myblog.com
+```
+
+Assuming you are hosting remotely on `http://www.myhiddenserver.com:4538` and you want to pull into a separate folder instead of static you can use the following command
+```
+$ gssg --domain http://www.myhiddenserver.com:4538 --dest myblog-static-folder
+```
+
+# API 
+### Generating a static site
+This assumes that your site is running locally at `http://localhost:2368` and will output to a folder called static.
 ```
 $ gssg
 ```
@@ -53,7 +72,7 @@ $ gssg --dest "myStaticSiteFolder"
 ```
 
 ### Preview site
-This will open the generated site in a new browser window.
+This will generated the site and then open the site in a new browser window. Please note: If you want to preview the site then the `--url` flag is ignored. This is because the links need to replace with the preview server's url.
 ```
 $ gssg --preview
 ```
@@ -71,6 +90,7 @@ $ gssg --silent
 ```
 
 ### Fail on error
+This option will output the failed wget command and also any errors to the stdout before exiting.
 ```
 $ gssg --fail-on-error
 ```

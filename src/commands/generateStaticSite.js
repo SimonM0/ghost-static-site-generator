@@ -43,7 +43,8 @@ const generateStaticSite = () => {
        */
       removeQueryStringsHelper(absoluteStaticPath);
 
-      if (argv.url) {
+      // Replace urls if not in preview mode, otherwise use preview url
+      if (argv.url && !argv.preview) {
         /**
          * Replace url in links
          */
@@ -58,8 +59,9 @@ const generateStaticSite = () => {
       console.log(`Static site generated at: ${absoluteStaticPath}`);
       console.timeEnd('Site generated in');
 
+
       if (argv.preview) {
-        previewGeneratedSite();
+        previewGeneratedSite(absoluteStaticPath);
       }
     },
   );

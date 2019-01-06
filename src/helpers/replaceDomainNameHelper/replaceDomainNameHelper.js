@@ -15,7 +15,7 @@ const replaceDomainNameHelper = (
 ) => (file) => {
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  let output = fileContents.replace(
+  let output = `${fileContents}`.replace(
     new RegExp(OPTIONS.URL, 'g'),
     replaceUrl,
   );
@@ -25,7 +25,7 @@ const replaceDomainNameHelper = (
   if (replaceUrl !== '') {
     output = output.replace(
       new RegExp(OPTIONS.DOMAIN, 'g'),
-      replaceUrl.replace(/^https?\:\/\//i, ''),
+      `${replaceUrl}`.replace(/^https?\:\/\//i, ''),
     );
   }
 
