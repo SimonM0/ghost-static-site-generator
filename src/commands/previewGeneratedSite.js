@@ -20,7 +20,7 @@ const previewGeneratedSite = (absoluteStaticPath) => {
 
   const preview = spawn(
     path.resolve(`${__dirname}', '../../../node_modules/.bin/http-server`),
-    [OPTIONS.STATIC_DIRECTORY, '-o'],
+    [OPTIONS.STATIC_DIRECTORY, '-o', '-c-1'],
   );
 
   preview.stdout.on('data', (data) => {
