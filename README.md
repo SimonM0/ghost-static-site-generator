@@ -70,6 +70,11 @@ Use this flag to hide wget output
 $ gssg --silent
 ```
 
+### Fail on error
+```
+$ gssg --fail-on-error
+```
+
 ## Contributing
 
 This is still a work in progress, please feel free to contribute by raising issues or creating pr's.
