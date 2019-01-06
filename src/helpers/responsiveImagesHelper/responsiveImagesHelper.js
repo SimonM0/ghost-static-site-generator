@@ -23,30 +23,30 @@ const getAllFileNames = (directory) => {
       const stats = fs.lstatSync(filePath);
 
       if (stats.isDirectory()) {
-        if (file !== 'size') {
-          getAllFileNames(filePath);
-        }
-        return images;
+        return [
+          ...images,
+          ...getAllFileNames(filePath),
+        ];
       }
 
-      imageSizes.forEach((imageSize) => {
-        const imageSizeUrl = filePath
-          .replace('content/images/', `content/images/size/${imageSize}/`);
-        images.push(imageSizeUrl);
-      });
+      images.push(filePath);
+      imageSizes
+        .forEach((imageSize) => {
+          const imageSizeUrl = filePath
+            .replace('content/images/', `content/images/size/${imageSize}/`);
+          // Prevent recursive calling of size images that already exist
+          if (
+            new RegExp(/w[0-9]{3,5}.*w[0-9]{3,5}/g).test(imageSizeUrl)
+          ) {
+            return;
+          }
+          images.push(imageSizeUrl);
+        });
 
       return images;
     }, []);
 
-  files.forEach((filePath) => {
-    // Replace the directory with the url to call
-    const url = filePath.replace(
-      OPTIONS.ABSOLUTE_STATIC_DIRECTORY,
-      OPTIONS.URL,
-    );
-
-    crawlPageHelper(url);
-  });
+  return files;
 };
 
 /**
@@ -58,7 +58,17 @@ const responsiveImagesHelper = () => {
     process.cwd(),
     `${OPTIONS.STATIC_DIRECTORY}/content`,
   );
-  getAllFileNames(contentPath);
+  const allFiles = getAllFileNames(contentPath);
+
+  allFiles.forEach((filePath) => {
+    // Replace the directory with the url to call
+    const url = filePath.replace(
+      OPTIONS.ABSOLUTE_STATIC_DIRECTORY,
+      OPTIONS.URL,
+    );
+
+    crawlPageHelper(url);
+  });
 };
 
 module.exports = responsiveImagesHelper;
