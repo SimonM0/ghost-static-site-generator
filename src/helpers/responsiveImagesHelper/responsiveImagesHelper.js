@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const OPTIONS = require('../../constants/OPTIONS');
-const crawlPageHelper = require('../crawlPageHelper');
+const crawlPageAsyncHelper = require('../crawlPageAsyncHelper');
 
 /**
  * These are the image sizes that we want to generate
@@ -61,13 +61,12 @@ const responsiveImagesHelper = () => {
   const allFiles = getAllFileNames(contentPath);
 
   allFiles.forEach((filePath) => {
-    // Replace the directory with the url to call
     const url = filePath.replace(
       OPTIONS.ABSOLUTE_STATIC_DIRECTORY,
       OPTIONS.URL,
     );
 
-    crawlPageHelper(url);
+    crawlPageAsyncHelper(url);
   });
 };
 
