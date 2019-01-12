@@ -18,7 +18,7 @@ const generateStaticSite = () => {
    * Makes the static folder if it does not exist
    */
   mkdirp(
-    OPTIONS.STATIC_DIRECTORY,
+    `${OPTIONS.STATIC_DIRECTORY}/content`,
     (error) => {
       const urls = [
         `${OPTIONS.URL}/sitemap.xsl`,
