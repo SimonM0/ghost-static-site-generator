@@ -1,5 +1,6 @@
 const path = require('path');
 const { spawn } = require('child_process');
+const { argv } = require('yargs');
 const OPTIONS = require('../constants/OPTIONS');
 const replaceUrlHelper = require('../helpers/replaceUrlHelper');
 
@@ -20,7 +21,16 @@ const previewGeneratedSite = (absoluteStaticPath) => {
 
   const preview = spawn(
     path.resolve(`${__dirname}', '../../../node_modules/.bin/http-server`),
-    [OPTIONS.STATIC_DIRECTORY, '-o', '-c-1'],
+    [
+      // Serve cwd when making subDir so the user can see the subDir
+      argv.subDir
+        ? './'
+        : OPTIONS.STATIC_DIRECTORY,
+      // Open in browser
+      '-o',
+      // No Cache
+      '-c-1',
+    ],
   );
 
   preview.stdout.on('data', (data) => {
