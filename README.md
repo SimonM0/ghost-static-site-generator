@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-v0.1.4-blue.svg)
+![Version](https://img.shields.io/badge/version-v0.1.5-blue.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D%208.10.0-brightgreen.svg)
 ![License](https://img.shields.io/github/license/Fried-Chicken/ghost-static-site-generator.svg)
 ![Stars](https://img.shields.io/github/stars/Fried-Chicken/ghost-static-site-generator.svg)
@@ -72,6 +72,12 @@ $ gssg --preview
 Use this flag to replace the url, use this option if your site url differs to your ghost url
 ```
 $ gssg --url 'http://www.mydomain.com'
+```
+
+### Hosting a site in sub directories
+Use this flag in conjunction with the `--dest` flag to host sites in directories. This flag will replace all relative path urls with absolute path urls
+```
+$ gssg --dest 'a-random-folder' --subDir 'a-random-folder'
 ```
 
 ### Silent mode
