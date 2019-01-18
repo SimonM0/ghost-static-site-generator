@@ -1,6 +1,6 @@
 {
   "name": "ghost-static-site-generator",
-  "version": "0.1.5-1",
+  "version": "1.5.0",
   "description": "A simple static site generator for ghost",
   "main": "index.js",
   "scripts": {
