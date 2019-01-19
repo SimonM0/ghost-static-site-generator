@@ -37,8 +37,8 @@ const replaceDomainNameHelper = (
 
   output = replaceUrlWithSubDirPathHelper(
     output,
-    urlWithSubDir,
     subDir,
+    filePath,
   );
 
   fs.writeFileSync(filePath, output);
