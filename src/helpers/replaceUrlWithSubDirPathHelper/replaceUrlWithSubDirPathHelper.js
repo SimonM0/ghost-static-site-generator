@@ -24,13 +24,13 @@ const replaceUrlWithSubDirPathHelper = (
   if (!subDir) {
     return output;
   }
-
-  const numberOfLevels = filePath
+  const pathMap = filePath
     .split(`/${OPTIONS.STATIC_DIRECTORY}`)
     .pop()
-    .split(/\/.*\//)
-    .length;
-
+    .split(/\//g);
+  pathMap.pop();
+  const numberOfLevels = pathMap.filter(item => !!item)
+    .length + 1;
   return replacementMatches
     .reduce(
       (sanitizedOutput, replacementMatch) =>

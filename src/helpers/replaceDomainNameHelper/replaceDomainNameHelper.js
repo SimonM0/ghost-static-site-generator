@@ -1,9 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 const { argv } = require('yargs');
+const { compose } = require('lodash/fp');
 const OPTIONS = require('../../constants/OPTIONS');
-const getSubDirectoryHelper = require('../getSubDirectoryHelper');
 const replaceUrlWithSubDirPathHelper = require('../replaceUrlWithSubDirPathHelper');
+const convertDomainToRelativeHelper = require('../convertDomainToRelativeHelper');
 
 /**
  * This function replaces url and domain names
@@ -21,23 +22,19 @@ const replaceDomainNameHelper = (
   // const urlWithSubDir = getSubDirectoryHelper(replaceUrl, subDir);
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  let output = fileContents;
-
-  output = replaceUrlWithSubDirPathHelper(
-    output,
+  const output = compose(
+    convertDomainToRelativeHelper,
+    replaceUrlWithSubDirPathHelper,
+  )(
+    fileContents,
     subDir,
     filePath,
   );
 
-  output = output.replace(
-    new RegExp(OPTIONS.URL, 'g'),
-    '.',
-  );
-
-  output = output.replace(
-    new RegExp(/\/ .*\.map/, 'g'),
-    '',
-  );
+  // output = output.replace(
+  //   new RegExp(/\/ .*\.map/, 'g'),
+  //   '',
+  // );
 
   fs.writeFileSync(filePath, output);
   console.log(`${OPTIONS.URL} => ${replaceUrl}: ${filePath}`);
