@@ -19,7 +19,6 @@ const replaceDomainNameHelper = (
 ) => (file) => {
   // Some users may want to host files under a sub directory
   const { subDir } = argv;
-  // const urlWithSubDir = getSubDirectoryHelper(replaceUrl, subDir);
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const output = compose(

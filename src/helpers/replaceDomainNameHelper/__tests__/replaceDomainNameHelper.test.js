@@ -4,6 +4,7 @@ const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 
 jest.mock('path', () => ({
   join: (...args) => args.join(''),
+  resolve: (...args) => args.join(''),
 }));
 
 jest.mock('fs');
@@ -18,13 +19,13 @@ jest.mock('yargs', () => ({
 describe('replaceDomainNameHelper', () => {
   const MOCK_FILE_INFO = {
     '/static/protocolRelativeUrls.html': {
-      contents: '//localhost:2742',
+      contents: 'src="//localhost:2742/content/someImage.jpg"',
     },
     '/static/http.html': {
-      contents: 'http://localhost:2742',
+      contents: 'src="http://localhost:2742/content/someImage.jpg"',
     },
     '/static/https.html': {
-      contents: 'https://localhost:2742',
+      contents: 'src="https://localhost:2742/content/someImage.jpg"',
     },
   };
 
@@ -32,7 +33,7 @@ describe('replaceDomainNameHelper', () => {
     fs.setMockFiles(MOCK_FILE_INFO);
   });
 
-  it('should replace `//localhost:2742` with `//www.anothersite.com` for protocolRelativeUrls', () => {
+  it('should replace `src="//localhost:2742/content/someImage.jpg"` with `src="./content/someImage.jpg"` for protocolRelativeUrls', () => {
     const fileHandler = replaceDomainNameHelper(
       '/static/',
       'http://www.anothersite.com',
@@ -43,26 +44,11 @@ describe('replaceDomainNameHelper', () => {
     expect(fs.writeFileSync)
       .toHaveBeenCalledWith(
         '/static/protocolRelativeUrls.html',
-        '//www.anothersite.com',
+        'src="./content/someImage.jpg"',
       );
   });
 
-  it('should replace `http://localhost:2742` with `http://www.anothersite.com` for protocolRelativeUrls', () => {
-    const fileHandler = replaceDomainNameHelper(
-      '/static/',
-      'http://www.anothersite.com',
-    );
-
-    fileHandler('http.html');
-
-    expect(fs.writeFileSync)
-      .toHaveBeenCalledWith(
-        '/static/http.html',
-        'http://www.anothersite.com',
-      );
-  });
-
-  it('should replace `https://localhost:2742` with `https://www.anothersite.com` for protocolRelativeUrls', () => {
+  it('should replace `src="https://localhost:2742/content/someImage.jpg"` with `src="./content/someImage.jpg"` for protocolRelativeUrls', () => {
     const fileHandler = replaceDomainNameHelper(
       '/static/',
       'https://www.anothersite.com',
@@ -73,22 +59,7 @@ describe('replaceDomainNameHelper', () => {
     expect(fs.writeFileSync)
       .toHaveBeenCalledWith(
         '/static/https.html',
-        'https://www.anothersite.com',
-      );
-  });
-
-  it('should allow protocol overriding', () => {
-    const fileHandler = replaceDomainNameHelper(
-      '/static/',
-      'http://www.anothersite.com',
-    );
-
-    fileHandler('https.html');
-
-    expect(fs.writeFileSync)
-      .toHaveBeenCalledWith(
-        '/static/https.html',
-        'http://www.anothersite.com',
+        'src="./content/someImage.jpg"',
       );
   });
 });
