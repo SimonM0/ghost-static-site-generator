@@ -18,27 +18,25 @@ const replaceDomainNameHelper = (
 ) => (file) => {
   // Some users may want to host files under a sub directory
   const { subDir } = argv;
-  const urlWithSubDir = getSubDirectoryHelper(replaceUrl, subDir);
+  // const urlWithSubDir = getSubDirectoryHelper(replaceUrl, subDir);
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  let output = `${fileContents}`.replace(
-    new RegExp(OPTIONS.URL, 'g'),
-    urlWithSubDir,
-  );
-
-  // Replace any localhost domains without protocol with the the domain
-  // i.e '//localhost:2365'
-  if (urlWithSubDir !== '') {
-    output = output.replace(
-      new RegExp(OPTIONS.DOMAIN, 'g'),
-      `${urlWithSubDir}`.replace(/^https?\:\/\//i, ''),
-    );
-  }
+  let output = fileContents;
 
   output = replaceUrlWithSubDirPathHelper(
     output,
     subDir,
     filePath,
+  );
+
+  output = output.replace(
+    new RegExp(OPTIONS.URL, 'g'),
+    '.',
+  );
+
+  output = output.replace(
+    new RegExp(/\/ .*\.map/, 'g'),
+    '',
   );
 
   fs.writeFileSync(filePath, output);
