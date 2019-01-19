@@ -3,6 +3,7 @@ const fs = require('fs');
 const { argv } = require('yargs');
 const { compose } = require('lodash/fp');
 const OPTIONS = require('../../constants/OPTIONS');
+const replaceDomainWithUrlHelper = require('../replaceDomainWithUrlHelper');
 const replaceUrlWithSubDirPathHelper = require('../replaceUrlWithSubDirPathHelper');
 const convertDomainToRelativeHelper = require('../convertDomainToRelativeHelper');
 
@@ -22,6 +23,7 @@ const replaceDomainNameHelper = (
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const output = compose(
+    replaceDomainWithUrlHelper,
     convertDomainToRelativeHelper,
     replaceUrlWithSubDirPathHelper,
   )(
@@ -36,7 +38,7 @@ const replaceDomainNameHelper = (
   // );
 
   fs.writeFileSync(filePath, output);
-  console.log(`${OPTIONS.URL} => ${replaceUrl}: ${filePath}`);
+  console.log(`${OPTIONS.DOMAIN} => ${replaceUrl}: ${filePath}`);
 };
 
 module.exports = replaceDomainNameHelper;

@@ -1,3 +1,4 @@
+const { argv } = require('yargs');
 const OPTIONS = require('../../constants/OPTIONS');
 
 /**
@@ -8,9 +9,13 @@ const replaceDomainWithUrlHelper = (
   output,
   domain = OPTIONS.DOMAIN,
   url = OPTIONS.URL,
-) => `${output}`.replace(
-  new RegExp(domain, 'g'),
-  url,
-);
+) => {
+  // Some users may want to host files under a sub directory
+  const { subDir } = argv;
+  return `${output}`.replace(
+    new RegExp(domain, 'g'),
+    subDir ? `${url}/${subDir}` : url,
+  );
+};
 
 module.exports = replaceDomainWithUrlHelper;

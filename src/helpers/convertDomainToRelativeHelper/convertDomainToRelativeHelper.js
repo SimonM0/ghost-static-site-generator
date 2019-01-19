@@ -10,7 +10,7 @@ const OPTIONS = require('../../constants/OPTIONS');
  */
 const convertDomainToRelativeHelper = (
   output,
-  urlToReplace = OPTIONS.URL,
+  urlToReplace = OPTIONS.DOMAIN,
 ) => {
   const urlWithoutProtocol = urlToReplace.replace(/^https?:/i, '');
   return output.replace(

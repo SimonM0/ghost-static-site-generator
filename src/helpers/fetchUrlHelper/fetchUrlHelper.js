@@ -27,7 +27,7 @@ const fetchUrlHelper = (url) => {
   if (`${url}`.includes('.xml')) {
     const filePath = path.resolve(
       process.cwd(),
-      `${OPTIONS.STATIC_DIRECTORY}${url.replace(OPTIONS.URL, '')}`,
+      `${OPTIONS.STATIC_DIRECTORY}${url.replace(OPTIONS.DOMAIN, '')}`,
     );
     const fileContents = fs.readFileSync(filePath, 'utf8');
 

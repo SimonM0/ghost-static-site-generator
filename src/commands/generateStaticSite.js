@@ -21,9 +21,9 @@ const generateStaticSite = () => {
     `${OPTIONS.STATIC_DIRECTORY}/content`,
     (error) => {
       const urls = [
-        `${OPTIONS.URL}/sitemap.xsl`,
-        `${OPTIONS.URL}/sitemap.xml`,
-        `${OPTIONS.URL}/404`,
+        `${OPTIONS.DOMAIN}/sitemap.xsl`,
+        `${OPTIONS.DOMAIN}/sitemap.xml`,
+        `${OPTIONS.DOMAIN}/404`,
       ];
 
       if (error) {
@@ -55,7 +55,7 @@ const generateStaticSite = () => {
         );
       }
 
-      console.log(`Domain: ${OPTIONS.URL}`);
+      console.log(`Domain: ${OPTIONS.DOMAIN}`);
       console.log(`Static site generated at: ${absoluteStaticPath}`);
       console.timeEnd('Site generated in');
 

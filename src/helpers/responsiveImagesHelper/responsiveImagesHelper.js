@@ -63,7 +63,7 @@ const responsiveImagesHelper = () => {
   allFiles.forEach((filePath) => {
     const url = filePath.replace(
       OPTIONS.ABSOLUTE_STATIC_DIRECTORY,
-      OPTIONS.URL,
+      OPTIONS.DOMAIN,
     );
 
     crawlPageAsyncHelper(url);
