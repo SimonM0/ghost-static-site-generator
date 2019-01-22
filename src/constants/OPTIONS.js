@@ -4,6 +4,7 @@ const { execSync } = require('child_process');
 
 const DOMAIN = argv.domain || 'http://localhost:2368';
 const URL = argv.url || 'http://localhost:2368';
+const IGNORE_ABSOLUTE_PATHS = argv.ignoreAbsolutePaths || false;
 const STATIC_DIRECTORY = argv.dest || 'static';
 
 const shouldShowProgress = () => {
@@ -36,6 +37,8 @@ const OPTIONS = {
   SHOW_PROGRESS_BAR: shouldShowProgress()
     ? '--show-progress '
     : '',
+  // --ignore-absolute-paths flag will remove all urls
+  IGNORE_ABSOLUTE_PATHS,
 };
 
 module.exports = OPTIONS;

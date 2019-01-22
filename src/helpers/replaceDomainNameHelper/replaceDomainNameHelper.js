@@ -6,6 +6,7 @@ const OPTIONS = require('../../constants/OPTIONS');
 const replaceDomainWithUrlHelper = require('../replaceDomainWithUrlHelper');
 const replaceUrlWithSubDirPathHelper = require('../replaceUrlWithSubDirPathHelper');
 const convertDomainToRelativeHelper = require('../convertDomainToRelativeHelper');
+const removeAllUrlsHelper = require('../removeAllUrlsHelper');
 
 /**
  * This function replaces url and domain names
@@ -23,6 +24,7 @@ const replaceDomainNameHelper = (
   const filePath = path.join(directory, file);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const output = compose(
+    removeAllUrlsHelper,
     replaceDomainWithUrlHelper,
     convertDomainToRelativeHelper,
     replaceUrlWithSubDirPathHelper,

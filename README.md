@@ -92,6 +92,12 @@ This option will output the failed wget command and also any errors to the stdou
 $ gssg --fail-on-error
 ```
 
+### Ignore Absolute Paths
+This option is intended for users who do no worry about SEO. This option will make your site truly relative and swap out all domain names for relative paths.
+```
+$ gssg --ignore-absolute-paths
+```
+
 ## Contributing
 
 This is still a work in progress, please feel free to contribute by raising issues or creating pr's.
