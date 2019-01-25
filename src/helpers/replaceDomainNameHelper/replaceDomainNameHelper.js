@@ -26,7 +26,7 @@ const replaceDomainNameHelper = (
   const output = compose(
     removeAllUrlsHelper,
     replaceDomainWithUrlHelper,
-    convertDomainToRelativeHelper,
+    convertDomainToRelativeHelper(subDir, filePath),
     replaceUrlWithSubDirPathHelper,
   )(
     fileContents,
