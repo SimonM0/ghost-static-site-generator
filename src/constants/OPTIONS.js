@@ -33,6 +33,8 @@ const OPTIONS = {
   DOMAIN,
   // This is the --url flag
   URL,
+  // This is the --url flag without http:// or https://
+  URL_WITHOUT_PROTOCOL: URL.replace(/^https?:\/\//i, ''),
   // The --silent flag determines if we should show the progress bar or not
   SHOW_PROGRESS_BAR: shouldShowProgress()
     ? '--show-progress '
