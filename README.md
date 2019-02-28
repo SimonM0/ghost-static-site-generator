@@ -7,7 +7,7 @@
 # ghost-static-site-generator
 A tool for generating static sites from [ghost](https://ghost.org/) blogs. This is based loosely on [buster](https://github.com/axitkhurana/buster) but since that project has been abandoned I've decided to create a new tool. 
 
-There are many reasons for wanting to generate a static site. For example security. It's also possible to integrate this tool into a ci process and deploy the generated site.
+There are many reasons for wanting to generate a static site. For example security benefits and speed. It's also possible to integrate this tool into a ci process and deploy the generated site.
 
 ## Prerequisites
 You need to have the following installed.
