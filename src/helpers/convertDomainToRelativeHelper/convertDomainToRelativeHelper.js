@@ -38,7 +38,7 @@ const convertDomainToRelativeHelper = (
     .substring(1);
 
   return output.replace(
-    new RegExp(`(src=")${urlToReplace}`, 'g'),
+    new RegExp(`(src=")${urlToReplace}/?`, 'g'),
     `$1${relativePathPrefix}`,
   ).replace(
     new RegExp(`(src=")${urlWithoutProtocol}`, 'g'),
