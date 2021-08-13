@@ -3,6 +3,7 @@ const mkdirp = require('mkdirp');
 const { argv } = require('yargs');
 const previewGeneratedSite = require('./previewGeneratedSite');
 const fetchUrlHelper = require('../helpers/fetchUrlHelper');
+const copy404PageHelper = require('../helpers/copy404PageHelper');
 const removeQueryStringsHelper = require('../helpers/removeQueryStringsHelper');
 const responsiveImagesHelper = require('../helpers/responsiveImagesHelper/responsiveImagesHelper');
 const replaceUrlHelper = require('../helpers/replaceUrlHelper');
@@ -24,6 +25,10 @@ const generateStaticSite = () => {
         `${OPTIONS.DOMAIN}/sitemap.xsl`,
         `${OPTIONS.DOMAIN}/sitemap.xml`,
         `${OPTIONS.DOMAIN}/404`,
+        `${OPTIONS.DOMAIN}/public/ghost.css`,
+        `${OPTIONS.DOMAIN}/public/ghost.min.css`,
+        `${OPTIONS.DOMAIN}/public/404-ghost.png`,
+        `${OPTIONS.DOMAIN}/public/404-ghost@2x.png`,
       ];
 
       if (error) {
@@ -32,6 +37,11 @@ const generateStaticSite = () => {
       }
 
       urls.forEach(fetchUrlHelper);
+
+      /**
+       * Copy the 404 page to 404.html
+       */
+      copy404PageHelper();
 
       /**
        * Generate all missing responsive images
