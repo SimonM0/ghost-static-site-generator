@@ -98,6 +98,12 @@ This option is intended for users who do no worry about SEO. This option will ma
 $ gssg --ignore-absolute-paths
 ```
 
+### Save redirected assets as referer path
+This option saves redirected content with the original referer path instead of the destination path. Note: from a file size perspective this is suboptimal as it results in each redirect saving a copy of the original file.
+```
+$ gssg --saveAsReferer
+```
+
 ## Contributing
 
 This is still a work in progress, please feel free to contribute by raising issues or creating pr's.

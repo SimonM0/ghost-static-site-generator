@@ -13,6 +13,13 @@ const contentOnError = () => {
     : '';
 };
 
+const saveAsReferer = () => {
+  if (OPTIONS.SAVE_AS_REFERER) {
+    return '';
+  }
+  return '--trust-server-names ';
+};
+
 const crawlPageHelper = (url) => {
   const wgetCommand = `wget -q ${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
     + '--timestamping '
@@ -20,8 +27,8 @@ const crawlPageHelper = (url) => {
     + '--no-parent '
     + '--no-host-directories '
     + '--restrict-file-name=unix '
-    + '--trust-server-names '
-    + `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ${contentOnError()}`
+    + `--directory-prefix ${OPTIONS.STATIC_DIRECTORY} ${contentOnError()} `
+    + `${saveAsReferer()}`
     + `${url}`;
 
   try {
