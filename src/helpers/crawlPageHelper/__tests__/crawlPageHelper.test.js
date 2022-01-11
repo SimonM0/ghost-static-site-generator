@@ -1,4 +1,4 @@
-import { crawlPageHelper } from '../crawlPageHelper';
+import crawlPageHelper from '../crawlPageHelper';
 
 describe.skip('crawlPageHelper', () => {
   it.skip('should ', () => {

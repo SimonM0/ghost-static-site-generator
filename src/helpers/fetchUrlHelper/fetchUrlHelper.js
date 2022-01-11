@@ -5,8 +5,8 @@ const get = require('lodash/get');
 const crawlPageHelper = require('../crawlPageHelper');
 const OPTIONS = require('../../constants/OPTIONS');
 
-const getUrlLinks = (result, path) => {
-  const sitemaps = get(result, path, []);
+const getUrlLinks = (result, linkPath) => {
+  const sitemaps = get(result, linkPath, []);
   return sitemaps.reduce((accumulator, page) => {
     const uncrawledUrl = get(page, 'loc[0]', '');
 
@@ -25,21 +25,31 @@ const fetchUrlHelper = (url) => {
   crawlPageHelper(url);
 
   if (`${url}`.includes('.xml')) {
-    const filePath = path.resolve(
-      process.cwd(),
-      `${OPTIONS.STATIC_DIRECTORY}${url.replace(OPTIONS.DOMAIN, '')}`,
-    );
-    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const domainRegExp = new RegExp(`(${
+      OPTIONS.DOMAIN.replace('https://', 'http://')}|${
+      OPTIONS.DOMAIN.replace('http://', 'https://')
+    })`, 'gi');
+    const fileName = `${OPTIONS.STATIC_DIRECTORY}${url.replace(domainRegExp, '')}`;
 
-    parseString(fileContents, (err, result) => {
-      const sitemaps = getUrlLinks(result, 'sitemapindex.sitemap');
-      const urlsets = getUrlLinks(result, 'urlset.url');
+    try {
+      const filePath = path.resolve(
+        process.cwd(),
+        fileName,
+      );
+      const fileContents = fs.readFileSync(filePath, 'utf8');
 
-      [
-        ...sitemaps,
-        ...urlsets,
-      ].forEach(fetchUrlHelper);
-    });
+      parseString(fileContents, (err, result) => {
+        const sitemaps = getUrlLinks(result, 'sitemapindex.sitemap');
+        const urlsets = getUrlLinks(result, 'urlset.url');
+
+        [
+          ...sitemaps,
+          ...urlsets,
+        ].forEach(fetchUrlHelper);
+      });
+    } catch (error) {
+      console.error(fileName, url, error);
+    }
   }
 };
 

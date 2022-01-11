@@ -1,5 +1,9 @@
 const path = require('path');
-const { argv } = require('yargs');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+
+const { argv } = yargs(hideBin(process.argv));
+
 const { execSync } = require('child_process');
 
 const DOMAIN = argv.domain || 'http://localhost:2368';

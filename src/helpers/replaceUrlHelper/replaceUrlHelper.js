@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const OPTIONS = require('../../constants/OPTIONS');
 const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 
 /**

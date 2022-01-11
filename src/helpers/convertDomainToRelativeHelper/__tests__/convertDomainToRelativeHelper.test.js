@@ -19,10 +19,6 @@ describe('convertDomainToRelativeHelper', () => {
 </a>
 `;
     const mockUrlToReplace = 'https://www.website.com';
-    const expected = convertDomainToRelativeHelper(
-      mockOutput,
-      mockUrlToReplace,
-    );
     const result = `
 <link rel="stylesheet" type="text/css" href="https://www.website.com/assets/built/screen.css?v=69b8d4368e" />
 <link rel="shortcut icon" href="https://www.website.com/favicon.ico" type="image/x-icon" />
@@ -38,6 +34,10 @@ describe('convertDomainToRelativeHelper', () => {
     />
 </a>
 `;
-    expect(expected).toEqual(result);
+    expect(convertDomainToRelativeHelper(__dirname)(
+      mockOutput,
+      mockUrlToReplace,
+    ))
+      .toEqual(result);
   });
 });

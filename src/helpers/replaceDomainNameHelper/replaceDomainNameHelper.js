@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const { argv } = require('yargs');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 const { compose } = require('lodash/fp');
 const OPTIONS = require('../../constants/OPTIONS');
 const replaceDomainWithUrlHelper = require('../replaceDomainWithUrlHelper');
@@ -8,6 +9,8 @@ const replaceUrlWithSubDirPathHelper = require('../replaceUrlWithSubDirPathHelpe
 const convertDomainToRelativeHelper = require('../convertDomainToRelativeHelper');
 const removeAllUrlsHelper = require('../removeAllUrlsHelper');
 const replaceXmlUrlsHelper = require('../replaceXmlUrlsHelper');
+
+const { argv } = yargs(hideBin(process.argv));
 
 /**
  * This function replaces url and domain names
@@ -36,12 +39,8 @@ const replaceDomainNameHelper = (
     filePath,
   );
 
-  // output = output.replace(
-  //   new RegExp(/\/ .*\.map/, 'g'),
-  //   '',
-  // );
-
   fs.writeFileSync(filePath, output);
+
   console.log(`${OPTIONS.DOMAIN} => ${replaceUrl}: ${filePath}`);
 };
 

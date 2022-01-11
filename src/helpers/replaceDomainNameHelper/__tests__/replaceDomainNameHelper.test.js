@@ -5,14 +5,16 @@ const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 jest.mock('path', () => ({
   join: (...args) => args.join(''),
   resolve: (...args) => args.join(''),
+  relative: (...args) => args.join(''),
 }));
 
 jest.mock('fs');
 
-jest.mock('yargs', () => ({
+jest.mock('yargs/yargs', () => () => ({
   argv: {
     url: 'https://localhost:2742',
     domain: 'https://localhost:2742',
+    subDir: __dirname,
   },
 }));
 
@@ -30,6 +32,7 @@ describe('replaceDomainNameHelper', () => {
   };
 
   beforeEach(() => {
+    jest.clearAllMocks();
     fs.setMockFiles(MOCK_FILE_INFO);
   });
 

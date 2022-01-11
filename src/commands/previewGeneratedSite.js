@@ -4,10 +4,9 @@ const { argv } = require('yargs');
 const OPTIONS = require('../constants/OPTIONS');
 const replaceUrlHelper = require('../helpers/replaceUrlHelper');
 
-const convertDataForOutput = data =>
-  data
-    .toString()
-    .replace('\n', '');
+const convertDataForOutput = (data) => data
+  .toString()
+  .replace('\n', '');
 
 const previewGeneratedSite = (absoluteStaticPath) => {
   /**

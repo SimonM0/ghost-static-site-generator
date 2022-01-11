@@ -1,6 +1,6 @@
 const removeAllUrlsHelper = require('../removeAllUrlsHelper');
 
-jest.mock('yargs', () => ({
+jest.mock('yargs/yargs', () => () => ({
   argv: {
     url: 'http://www.example.com',
     ignoreAbsolutePaths: true,

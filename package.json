@@ -4,8 +4,10 @@
   "description": "A simple static site generator for ghost",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "http-server ./static -o"
+    "test": "jest --coverage",
+    "start": "http-server ./static -o",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run lint; npm run test;"
   },
   "bin": {
     "gssg": "./src/index.js"
@@ -28,27 +30,29 @@
   },
   "homepage": "https://github.com/Fried-Chicken/ghost-static-site-generator#readme",
   "dependencies": {
+    "http-server": "^14.1.0",
+    "lodash": "^4.17.11",
+    "mkdirp": "^ 1.0.4",
+    "wget-improved": "^3.2.1",
+    "xml2js": "^0.4.19",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
+    "@types/jest": "^27.4.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
-    "http-server": "^0.11.1",
-    "jsdom": "^13.1.0",
-    "lodash": "^4.17.11",
-    "mkdirp": "^0.5.1",
-    "node-wget": "^0.4.3",
-    "xml2js": "^0.4.19",
-    "yargs": "^12.0.5"
-  },
-  "devDependencies": {
-    "babel-jest": "^23.6.0",
-    "eslint": "^5.12.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0"
+    "babel-jest": "^27.4.6",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.4.6"
   },
   "resolutions": {
     "boom": "^7.3.0"

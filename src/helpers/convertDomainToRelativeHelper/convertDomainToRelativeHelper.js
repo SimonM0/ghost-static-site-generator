@@ -19,13 +19,14 @@ const convertDomainToRelativeHelper = (
   if (!subDir) {
     return output;
   }
+
   const urlWithoutProtocol = urlToReplace.replace(/^https?:/i, '');
   const pathMap = filePath
     .split(`/${OPTIONS.STATIC_DIRECTORY}`)
     .pop()
     .split(/\//g);
   pathMap.pop();
-  const numberOfLevels = pathMap.filter(item => !!item)
+  const numberOfLevels = pathMap.filter((item) => !!item)
     .length + 1;
   /**
    * This part of the code is used to determine how many levels
@@ -38,10 +39,7 @@ const convertDomainToRelativeHelper = (
     .substring(1);
 
   return output.replace(
-    new RegExp(`(src=")${urlToReplace}/?`, 'g'),
-    `$1${relativePathPrefix}`,
-  ).replace(
-    new RegExp(`(src=")${urlWithoutProtocol}`, 'g'),
+    new RegExp(`(src=")(${urlToReplace}|${urlWithoutProtocol})/?`, 'g'),
     `$1${relativePathPrefix}`,
   );
 };

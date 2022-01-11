@@ -17,7 +17,7 @@ const imageSizes = [
 
 const getAllFileNames = (directory) => {
   const directoryContents = fs.readdirSync(directory);
-  const files = directoryContents
+  return directoryContents
     .reduce((images, file) => {
       const filePath = path.resolve(directory, file);
       const stats = fs.lstatSync(filePath);
@@ -36,7 +36,7 @@ const getAllFileNames = (directory) => {
             .replace('content/images/', `content/images/size/${imageSize}/`);
           // Prevent recursive calling of size images that already exist
           if (
-            new RegExp(/w[0-9]{3,5}.*w[0-9]{3,5}/g).test(imageSizeUrl)
+            /w[0-9]{3,5}.*w[0-9]{3,5}/g.test(imageSizeUrl)
           ) {
             return;
           }
@@ -45,8 +45,6 @@ const getAllFileNames = (directory) => {
 
       return images;
     }, []);
-
-  return files;
 };
 
 /**
