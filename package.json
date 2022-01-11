@@ -8,7 +8,8 @@
     "start": "http-server ./static -o",
     "lint": "eslint src",
     "prepublishOnly": "npm run lint; npm run test;",
-    "release": "release-it"
+    "release": "release-it",
+    "preview": "http-server ./static"
   },
   "bin": {
     "gssg": "./src/index.js"
@@ -34,7 +35,7 @@
   },
   "homepage": "https://github.com/Fried-Chicken/ghost-static-site-generator#readme",
   "dependencies": {
-    "http-server": "^14.1.0",
+    "http-server": "^13.0.0",
     "lodash": "^4.17.11",
     "mkdirp": "^ 1.0.4",
     "wget-improved": "^3.2.1",
