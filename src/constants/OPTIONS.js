@@ -6,8 +6,8 @@ const { argv } = yargs(hideBin(process.argv));
 
 const { execSync } = require('child_process');
 
-const DOMAIN = argv.domain || 'http://localhost:2368';
-const URL = argv.url || 'http://localhost:2368';
+const DOMAIN = (argv.domain || 'http://localhost:2368').replace(/\/?$/, '');
+const URL = (argv.url || 'http://localhost:2368').replace(/\/?$/, '');
 const IGNORE_ABSOLUTE_PATHS = argv.ignoreAbsolutePaths || false;
 const STATIC_DIRECTORY = argv.dest || 'static';
 const SAVE_AS_REFERER = argv.saveAsReferer || false;
@@ -35,7 +35,7 @@ const OPTIONS = {
   // This is the --domain flag without http:// or https://
   DOMAIN_WITHOUT_PROTOCOL: DOMAIN.replace(/^https?:\/\//i, ''),
   // This is the --domain flag
-  DOMAIN: DOMAIN.replace(/\/?$/, ''),
+  DOMAIN,
   // This is the --url flag
   URL,
   // This is the --url flag without http:// or https://
