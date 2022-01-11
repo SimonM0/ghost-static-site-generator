@@ -2,4 +2,5 @@
 const generateStaticSite = require('./commands/generateStaticSite');
 
 console.time('Site generated in');
+
 generateStaticSite();

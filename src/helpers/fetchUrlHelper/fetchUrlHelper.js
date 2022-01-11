@@ -24,6 +24,14 @@ const getUrlLinks = (result, linkPath) => {
 const fetchUrlHelper = (url) => {
   crawlPageHelper(url);
 
+  if (url.includes('.js')) {
+    /**
+     * TODO: Read this from the js files  instead
+     */
+    crawlPageHelper(url.replace('.js', '.map.js'));
+    crawlPageHelper(url.replace('.js', '.js.map'));
+  }
+
   if (`${url}`.includes('.xml')) {
     const domainRegExp = new RegExp(`(${
       OPTIONS.DOMAIN.replace('https://', 'http://')}|${
