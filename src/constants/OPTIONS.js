@@ -6,6 +6,7 @@ const DOMAIN = argv.domain || 'http://localhost:2368';
 const URL = argv.url || 'http://localhost:2368';
 const IGNORE_ABSOLUTE_PATHS = argv.ignoreAbsolutePaths || false;
 const STATIC_DIRECTORY = argv.dest || 'static';
+const SAVE_AS_REFERER = argv.saveAsReferer || false;
 
 const shouldShowProgress = () => {
   if (argv.silent) {
@@ -41,6 +42,9 @@ const OPTIONS = {
     : '',
   // --ignore-absolute-paths flag will remove all urls
   IGNORE_ABSOLUTE_PATHS,
+  // --save-as-referer flag will save redirected assets using the
+  // original url path instead of the redirected destination url
+  SAVE_AS_REFERER,
 };
 
 module.exports = OPTIONS;
