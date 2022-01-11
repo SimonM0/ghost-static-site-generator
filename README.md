@@ -13,8 +13,13 @@ There are many reasons for wanting to generate a static site. For example securi
 You need to have the following installed.
 - Node v8 LTS
 - wget v1.16 (Versions prior to will need to use the --silent flag as --show-progress is not available)
+- [Chocolatey](https://docs.chocolatey.org/en-us/choco/setup) (Windows only)
+
+>Note: Chocolatey usually comes with NodeJS and you don't need to install it separately.
 
 ## Installation
+
+### Linux & Mac
 1. Install wget
 ```
 $ brew install wget
@@ -23,6 +28,17 @@ $ brew install wget
 ```
 $ npm install -g ghost-static-site-generator
 ```
+
+### Windows
+1. Install wget via chocolatey
+```
+$ choco install wget
+```
+2. Install globally the static site generator
+```
+$ npm install -g ghost-static-site-generator
+```
+
 
 ## Usages
 By default the tool will default to `http://localhost:2368` for the domain and generate a folder called `static` in the directory that you run the tool in.
