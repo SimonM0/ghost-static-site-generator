@@ -1,5 +1,5 @@
-![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D%208.10.0-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-v1.1.2-blue.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D%2012.0.0-brightgreen.svg)
 ![License](https://img.shields.io/github/license/Fried-Chicken/ghost-static-site-generator.svg)
 ![Stars](https://img.shields.io/github/stars/Fried-Chicken/ghost-static-site-generator.svg)
 ![Forks](https://img.shields.io/github/forks/Fried-Chicken/ghost-static-site-generator.svg)
