@@ -35,7 +35,7 @@ const OPTIONS = {
   // This is the --domain flag without http:// or https://
   DOMAIN_WITHOUT_PROTOCOL: DOMAIN.replace(/^https?:\/\//i, ''),
   // This is the --domain flag
-  DOMAIN,
+  DOMAIN: DOMAIN.replace(/\/?$/, ''),
   // This is the --url flag
   URL,
   // This is the --url flag without http:// or https://
