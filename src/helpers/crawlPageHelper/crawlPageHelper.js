@@ -2,6 +2,8 @@ const { execSync } = require('child_process');
 const { argv } = require('yargs');
 const OPTIONS = require('../../constants/OPTIONS');
 
+const crawlHistory = new Set();
+
 const contentOnError = () => {
   const contentOnErrorHelpText = execSync(
     'wget --help | grep "content-on-error" || true',
@@ -21,6 +23,10 @@ const saveAsReferer = () => {
 };
 
 const crawlPageHelper = (url) => {
+  if (crawlHistory.has(url)) {
+    return;
+  }
+
   const wgetCommand = `wget -q ${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
     + '--timestamping '
     + '--page-requisites '
@@ -37,6 +43,8 @@ const crawlPageHelper = (url) => {
       wgetCommand,
       { stdio: 'inherit' },
     );
+
+    crawlHistory.add(url);
   } catch (execSyncError) {
     console.log(`ERROR: ${execSyncError.stdout}`);
     console.log(`Using Command: ${wgetCommand}`);
