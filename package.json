@@ -24,6 +24,9 @@
     "site",
     "blog"
   ],
+  "engines": {
+    "node": ">=12"
+  },
   "author": "Fried-Chicken <Fried-Chicken@users.noreply.github.com>",
   "license": "MIT",
   "bugs": {
