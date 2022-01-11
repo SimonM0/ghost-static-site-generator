@@ -22,6 +22,7 @@ const generateStaticSite = () => {
     `${OPTIONS.STATIC_DIRECTORY}/content`,
     (error) => {
       const urls = [
+        `${OPTIONS.DOMAIN}/`,
         `${OPTIONS.DOMAIN}/sitemap.xsl`,
         `${OPTIONS.DOMAIN}/sitemap.xml`,
         `${OPTIONS.DOMAIN}/404`,
