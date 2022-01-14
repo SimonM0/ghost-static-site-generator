@@ -6,8 +6,8 @@ const OPTIONS = require('../../constants/OPTIONS');
 const replaceXmlUrlsHelper = (file) => (output) => {
   if (`${file}`.includes('.xml')) {
     return `${output}`.replace(
-      new RegExp(OPTIONS.DOMAIN_WITHOUT_PROTOCOL, 'g'),
-      OPTIONS.URL_WITHOUT_PROTOCOL,
+      new RegExp(OPTIONS.SOURCE_DOMAIN_WITHOUT_PROTOCOL, 'g'),
+      OPTIONS.PRODUCTION_DOMAIN_WITHOUT_PROTOCOL,
     );
   }
   return output;

@@ -46,17 +46,17 @@ By default the tool will default to `http://localhost:2368` for the domain and g
 ## Recipes
 Assuming you are hosting locally on `http://localhost:2368` and your domain is `http://www.myblog.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
 ```
-$ gssg --url http://www.myblog.com
+$ gssg --productionDomain http://www.myblog.com
 ```
 
 Assuming you are hosting remotely on `http://www.myhiddenserver.com:4538` and your domain is `http://www.myblogbucket.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
 ```
-$ gssg --domain http://www.myhiddenserver.com:4538 --url http://www.myblog.com
+$ gssg --sourceDomain http://www.myhiddenserver.com:4538 --productionDomain http://www.myblog.com
 ```
 
 Assuming you are hosting remotely on `http://www.myhiddenserver.com:4538` and you want to pull into a separate folder instead of static you can use the following command
 ```
-$ gssg --domain http://www.myhiddenserver.com:4538 --dest myblog-static-folder
+$ gssg --sourceDomain http://www.myhiddenserver.com:4538 --dest myblog-static-folder
 ```
 
 ## API 
@@ -67,9 +67,9 @@ $ gssg
 ```
 
 ### Generate static site from a custom domain
-If your site is not hosted locally you can use the `--domain` flag to target the your site.
+If your site is not hosted locally you can use the `--sourceDomain` flag to target the your site.
 ```
-$ gssg --domain "http://localhost:2369"
+$ gssg --sourceDomain "http://localhost:2369"
 ```
 
 ### Generate static site to a custom folder
@@ -79,7 +79,7 @@ $ gssg --dest "myStaticSiteFolder"
 ```
 
 ### Preview site
-This will generated the site and then open the site in a new browser window. Please note: If you want to preview the site then the `--url` flag is ignored. This is because the links need to replace with the preview server's url.
+This will generated the site and then open the site in a new browser window. Please note: If you want to preview the site then the `--productionDomain` flag is ignored. This is because the links need to replace with the preview server's url.
 ```
 $ gssg --preview
 ```
@@ -87,7 +87,7 @@ $ gssg --preview
 ### Replace url
 Use this flag to replace the url, use this option if your site url differs to your ghost url
 ```
-$ gssg --url 'http://www.mydomain.com'
+$ gssg --productionDomain 'http://www.mydomain.com'
 ```
 
 ### Hosting a site in sub directories

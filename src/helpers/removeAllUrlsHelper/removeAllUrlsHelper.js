@@ -6,7 +6,7 @@ const OPTIONS = require('../../constants/OPTIONS');
 const removeAllUrlsHelper = (output) => {
   if (OPTIONS.IGNORE_ABSOLUTE_PATHS) {
     return output.replace(
-      new RegExp(OPTIONS.URL, 'g'),
+      new RegExp(OPTIONS.PRODUCTION_DOMAIN, 'g'),
       '',
     );
   }
