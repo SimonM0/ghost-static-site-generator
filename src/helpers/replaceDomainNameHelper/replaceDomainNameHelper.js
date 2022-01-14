@@ -41,7 +41,7 @@ const replaceDomainNameHelper = (
 
   fs.writeFileSync(filePath, output);
 
-  console.log(`${OPTIONS.DOMAIN} => ${replaceUrl}: ${filePath}`);
+  console.log(`${OPTIONS.SOURCE_DOMAIN} => ${replaceUrl}: ${filePath}`);
 };
 
 module.exports = replaceDomainNameHelper;

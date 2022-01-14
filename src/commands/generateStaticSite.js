@@ -22,14 +22,14 @@ const generateStaticSite = async () => {
     await mkdirp(`${OPTIONS.STATIC_DIRECTORY}/content`);
 
     const urls = [
-      `${OPTIONS.DOMAIN}/`,
-      `${OPTIONS.DOMAIN}/sitemap.xsl`,
-      `${OPTIONS.DOMAIN}/sitemap.xml`,
-      `${OPTIONS.DOMAIN}/404`,
-      `${OPTIONS.DOMAIN}/public/ghost.css`,
-      `${OPTIONS.DOMAIN}/public/ghost.min.css`,
-      `${OPTIONS.DOMAIN}/public/404-ghost.png`,
-      `${OPTIONS.DOMAIN}/public/404-ghost@2x.png`,
+      `${OPTIONS.SOURCE_DOMAIN}/`,
+      `${OPTIONS.SOURCE_DOMAIN}/sitemap.xsl`,
+      `${OPTIONS.SOURCE_DOMAIN}/sitemap.xml`,
+      `${OPTIONS.SOURCE_DOMAIN}/404`,
+      `${OPTIONS.SOURCE_DOMAIN}/public/ghost.css`,
+      `${OPTIONS.SOURCE_DOMAIN}/public/ghost.min.css`,
+      `${OPTIONS.SOURCE_DOMAIN}/public/404-ghost.png`,
+      `${OPTIONS.SOURCE_DOMAIN}/public/404-ghost@2x.png`,
     ];
 
     urls.forEach(fetchUrlHelper);
@@ -61,7 +61,7 @@ const generateStaticSite = async () => {
       );
     }
 
-    console.log(`Domain: ${OPTIONS.DOMAIN}`);
+    console.log(`Domain: ${OPTIONS.SOURCE_DOMAIN}`);
     console.log(`Static site generated at: ${absoluteStaticPath}`);
     console.timeEnd('Site generated in');
 

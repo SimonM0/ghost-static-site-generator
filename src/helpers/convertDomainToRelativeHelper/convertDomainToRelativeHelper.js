@@ -13,7 +13,7 @@ const convertDomainToRelativeHelper = (
   filePath = `/${OPTIONS.STATIC_DIRECTORY}`,
 ) => (
   output,
-  urlToReplace = OPTIONS.DOMAIN,
+  urlToReplace = OPTIONS.SOURCE_DOMAIN,
 ) => {
   // TODO: detect folder
   if (!subDir) {

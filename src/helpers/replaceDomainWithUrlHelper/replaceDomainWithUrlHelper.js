@@ -7,7 +7,7 @@ const OPTIONS = require('../../constants/OPTIONS');
  */
 const replaceDomainWithUrlHelper = (
   output,
-  domain = OPTIONS.DOMAIN,
+  domain = OPTIONS.SOURCE_DOMAIN,
   url = OPTIONS.PRODUCTION_DOMAIN,
 ) => {
   // Some users may want to host files under a sub directory

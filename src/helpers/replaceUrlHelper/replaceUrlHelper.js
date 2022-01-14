@@ -3,7 +3,7 @@ const path = require('path');
 const replaceDomainNameHelper = require('../replaceDomainNameHelper');
 
 /**
- * This helper finds all instances of OPTIONS.DOMAIN and replaces it with the
+ * This helper finds all instances of OPTIONS.SOURCE_DOMAIN and replaces it with the
  * url provided by the `url` flag. It will replace `http://`, `https://` and
  * `//`
  *
