@@ -47,6 +47,9 @@ $ node install
 ## Usages
 By default the tool will default to `http://localhost:2368` for the domain and generate a folder called `static` in the directory that you run the tool in.
 
+**NOTE:** Themes other than Casper aren't fully supported. If you use another theme, you _might_ have to manually copy the `assets\built\THEME-NAME.js` file from your server.
+**NOTE:** gssg has been tested only on ghost 4.48.2
+
 ## Recipes
 Assuming you are hosting locally on `http://localhost:2368` and your domain is `http://www.myblog.com` then you can run the following. You need to pass the url flag because all links need to be replaced with your domain name instead of localhost
 ```
