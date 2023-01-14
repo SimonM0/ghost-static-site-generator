@@ -33,11 +33,9 @@ const fetchUrlHelper = (url) => {
   }
 
   if (`${url}`.includes('.xml')) {
-    const domainRegExp = new RegExp(`(${
-      OPTIONS.SOURCE_DOMAIN.replace('https://', 'http://')}|${
-      OPTIONS.SOURCE_DOMAIN.replace('http://', 'https://')
-    })`, 'gi');
-    const fileName = `${OPTIONS.STATIC_DIRECTORY}${url.replace(domainRegExp, '')}`;
+    urlpath = url.replace(OPTIONS.SOURCE_DOMAIN, "")
+    urlpath = "\\" + urlpath.substring(1);
+    const fileName = `${OPTIONS.STATIC_DIRECTORY}${urlpath}`;
 
     try {
       const filePath = path.resolve(

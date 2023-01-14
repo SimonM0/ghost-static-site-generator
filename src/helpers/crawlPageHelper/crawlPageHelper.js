@@ -26,7 +26,6 @@ const crawlPageHelper = (url) => {
   if (crawlHistory.has(url)) {
     return;
   }
-
   const wgetCommand = `wget -q ${OPTIONS.SHOW_PROGRESS_BAR}--recursive `
     + '--timestamping '
     + '--page-requisites '
@@ -46,12 +45,14 @@ const crawlPageHelper = (url) => {
 
     crawlHistory.add(url);
   } catch (execSyncError) {
-    console.log(`ERROR: ${execSyncError.stdout}`);
-    console.log(`Using Command: ${wgetCommand}`);
+  	if (execSyncError.stdout != null) {
+  		console.log(`ERROR: ${execSyncError.stdout}`);
+    	console.log(`Using Command: ${wgetCommand}`);
 
-    if (argv.failOnError) {
-      process.exit(1);
-    }
+	    if (argv.failOnError) {
+	      process.exit(1);
+	    }
+	}
   }
 };
 
