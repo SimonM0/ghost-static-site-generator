@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^27.4.6",
-    "release-it": "^14.12.1"
+    "release-it": "^15.6.0"
   },
   "resolutions": {
     "boom": "^7.3.0"
