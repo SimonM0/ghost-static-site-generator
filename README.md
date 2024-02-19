@@ -28,7 +28,7 @@ $ brew install wget
 ```
 $ git clone https://github.com/itsignacioportal/ghost-static-site-generator/
 $ cd ghost-static-site-generator
-$ node install
+$ npm install
 ```
 
 ### Windows
@@ -40,7 +40,7 @@ $ choco install wget
 ```
 $ git clone https://github.com/itsignacioportal/ghost-static-site-generator/
 $ cd ghost-static-site-generator
-$ node install
+$ npm install
 ```
 
 
